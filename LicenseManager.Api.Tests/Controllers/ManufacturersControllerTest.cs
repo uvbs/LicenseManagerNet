@@ -10,6 +10,27 @@ namespace LicenseManager.Api.Tests.Controllers
     public class ManufacturersControllerTest
     {
         [TestMethod]
+        public void GetProducts_ShouldReturnAllProducts()
+        {
+            var context = new TestLicenseManagerContext();
+            context.Manufacturers.Add(new Manufacturer { Id = 1, Name = "Manufacturer 1" });
+            context.Manufacturers.Add(new Manufacturer { Id = 2, Name = "Manufacturer 2" });
+            context.Manufacturers.Add(new Manufacturer { Id = 3, Name = "Manufacturer 3" });
+            var controller = new ManufacturersController(context);
+
+            var result = controller.GetManufacturers() as TestManufacturerDbSet;
+
+            Assert.IsNotNull(result);
+            Assert.AreEqual(3, result.Local.Count);
+        }
+
+        [TestMethod]
+        public void GetManufacturer_ShouldReturnManufacturerWithSameId()
+        {
+
+        }
+
+        [TestMethod]
         public void PostManufacturer_ShouldReturnSameManufacturer()
         {
             var controller = new ManufacturersController(new TestLicenseManagerContext());
