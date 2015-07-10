@@ -13,29 +13,27 @@ namespace LicenseManager.Api.Tests.Controllers
         [TestMethod]
         public void GetManufacturers_ShouldReturnAllManufacturers()
         {
-            var context = new TestLicenseManagerContext();
-            context.Manufacturers.Add(new Manufacturer { Id = 1, Name = "Manufacturer 1" });
-            context.Manufacturers.Add(new Manufacturer { Id = 2, Name = "Manufacturer 2" });
-            context.Manufacturers.Add(new Manufacturer { Id = 3, Name = "Manufacturer 3" });
+            var context = GetDemoContext();
             var controller = new ManufacturersController(context);
 
             var result = controller.GetManufacturers() as TestManufacturerDbSet;
 
             Assert.IsNotNull(result);
-            Assert.AreEqual(3, result.Local.Count);
+            Assert.AreEqual(context.Manufacturers.Local.Count, result.Local.Count);
         }
 
         [TestMethod]
         public void GetManufacturer_ShouldReturnManufacturerWithSameId()
         {
-            var context = new TestLicenseManagerContext();
-            context.Manufacturers.Add(GetDemoManufacturer());
+            var context = GetDemoContext();
+            var item = GetDemoManufacturer();
+            context.Manufacturers.Add(item);
             var controller = new ManufacturersController(context);
 
-            var result = controller.GetManufacturer(3) as OkNegotiatedContentResult<Manufacturer>;
+            var result = controller.GetManufacturer(item.Id) as OkNegotiatedContentResult<Manufacturer>;
 
             Assert.IsNotNull(result);
-            Assert.AreEqual(3, result.Content.Id);
+            Assert.AreEqual(item.Id, result.Content.Id);
         }
 
         [TestMethod]
@@ -87,6 +85,14 @@ namespace LicenseManager.Api.Tests.Controllers
             Assert.IsNotNull(result);
             Assert.AreEqual(item.Id, result.Content.Id);
 
+        }
+
+        private TestLicenseManagerContext GetDemoContext()
+        {
+            var context = new TestLicenseManagerContext();
+            context.Manufacturers.Add(new Manufacturer { Id = 1, Name = "Manufacturer 1" });
+            context.Manufacturers.Add(new Manufacturer { Id = 2, Name = "Manufacturer 2" });
+            return context;
         }
 
         private Manufacturer GetDemoManufacturer()
