@@ -13,6 +13,6 @@ namespace LicenseManager.Shared.Models
         DbSet<Software> Softwares { get; }
 
         int SaveChanges();
-        void MarkAsModified(Manufacturer item);
+        void MarkAsModified(object item);
     }
 }

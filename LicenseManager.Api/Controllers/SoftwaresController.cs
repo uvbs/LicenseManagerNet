@@ -1,4 +1,5 @@
-﻿using LicenseManager.Shared.Models;
+﻿using System.Data.Entity.Infrastructure;
+using LicenseManager.Shared.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -30,28 +31,72 @@ namespace LicenseManager.Api.Controllers
         [ResponseType(typeof(Software))]
         public IHttpActionResult GetSoftware(int id)
         {
-            throw new NotImplementedException();
+            Software software = _db.Softwares.Find(id);
+            if (null == software)
+            {
+                return NotFound();
+            }
+            return Ok(software);
         }
 
         // PUT: api/Softwares/5
         [ResponseType(typeof(void))]
-        public IHttpActionResult PutSoftware(int id, Software manufacturer)
+        public IHttpActionResult PutSoftware(int id, Software software)
         {
-            throw new NotImplementedException();
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            if (id != software.Id)
+            {
+                return BadRequest();
+            }
+
+            _db.MarkAsModified(software);
+
+            try
+            {
+                _db.SaveChanges();
+            }
+            catch (DbUpdateConcurrencyException ex)
+            {
+                //TODO check if software exits
+                return NotFound();
+            }
+
+            return StatusCode(HttpStatusCode.NoContent);
         }
 
         // POST: api/Softwares
         [ResponseType(typeof(Software))]
         public IHttpActionResult PostSoftware(Software software)
         {
-            throw new NotImplementedException();
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            _db.Softwares.Add(software);
+            _db.SaveChanges();
+
+            return CreatedAtRoute("DefaultApi", new {id = software.Id}, software);
         }
 
         // DELETE: api/Softwares/5
         [ResponseType(typeof(Software))]
         public IHttpActionResult DeleteSoftware(int id)
         {
-            throw new NotImplementedException();
+            Software software = _db.Softwares.Find(id);
+            if (null == software)
+            {
+                return NotFound();
+            }
+
+            _db.Softwares.Remove(software);
+            _db.SaveChanges();
+
+            return Ok(software);
         }
     }
 }

@@ -22,7 +22,7 @@ namespace LicenseManager.Shared.Models
         public DbSet<Manufacturer> Manufacturers { get; set; }
         public DbSet<Software> Softwares { get; set; }
 
-        public void MarkAsModified(Manufacturer item)
+        public void MarkAsModified(object item)
         {
             Entry(item).State = EntityState.Modified;
         }

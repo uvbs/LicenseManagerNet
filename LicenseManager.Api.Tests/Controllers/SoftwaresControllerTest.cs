@@ -26,7 +26,7 @@ namespace LicenseManager.Api.Tests.Controllers
             Assert.AreEqual(context.Softwares.Local.Count, result.Local.Count);
         }
 
-        //[TestMethod]
+        [TestMethod]
         public void GetSoftware_ShouldReturnSoftwareWithSameId()
         {
             var context = GetDemoContext();
@@ -40,7 +40,18 @@ namespace LicenseManager.Api.Tests.Controllers
             Assert.AreEqual(result.Content.Id, item.Id);
         }
 
-        //[TestMethod]
+        [TestMethod]
+        public void GetSoftware_ShouldReturnNotFound_WhenInvalidId()
+        {
+            var controller = new SoftwaresController(new TestLicenseManagerContext());
+
+            var result = controller.GetSoftware(999);
+
+            Assert.IsNotNull(result);
+            Assert.IsInstanceOfType(result, typeof(NotFoundResult));
+        }
+
+        [TestMethod]
         public void PutSoftware_ShouldReturnStatusCode()
         {
             var controller = new SoftwaresController(new TestLicenseManagerContext());
@@ -53,7 +64,7 @@ namespace LicenseManager.Api.Tests.Controllers
             Assert.AreEqual(HttpStatusCode.NoContent, result.StatusCode);
         }
 
-        //[TestMethod]
+        [TestMethod]
         public void PutSoftware_ShouldFail_WhenDifferentId()
         {
             var controller = new SoftwaresController(new TestLicenseManagerContext());
@@ -63,7 +74,7 @@ namespace LicenseManager.Api.Tests.Controllers
             Assert.IsInstanceOfType(badresult, typeof(BadRequestResult));
         }
 
-        //[TestMethod]
+        [TestMethod]
         public void PostSoftware_ShouldReturnSameSoftware()
         {
             var controller = new SoftwaresController(GetDemoContext());
@@ -77,7 +88,7 @@ namespace LicenseManager.Api.Tests.Controllers
             Assert.AreEqual(result.Content.Name, item.Name);
         }
 
-        //[TestMethod]
+        [TestMethod]
         public void DeleteSoftware_ShouldReturnOk()
         {
             var context = GetDemoContext();

@@ -24,7 +24,7 @@ namespace LicenseManager.Api.Tests
             
         }
 
-        public void MarkAsModified(Manufacturer item)
+        public void MarkAsModified(object item)
         {
             
         }
