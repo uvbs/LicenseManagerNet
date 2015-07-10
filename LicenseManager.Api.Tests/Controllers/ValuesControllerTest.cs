@@ -10,7 +10,7 @@ using LicenseManager.Api.Controllers;
 
 namespace LicenseManager.Api.Tests.Controllers
 {
-    [TestClass]
+   // [TestClass]
     public class ValuesControllerTest
     {
         [TestMethod]
