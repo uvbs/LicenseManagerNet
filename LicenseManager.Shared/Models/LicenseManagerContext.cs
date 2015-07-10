@@ -19,7 +19,8 @@ namespace LicenseManager.Shared.Models
         {
         }
 
-        public DbSet<LicenseManager.Shared.Models.Manufacturer> Manufacturers { get; set; }
+        public DbSet<Manufacturer> Manufacturers { get; set; }
+        public DbSet<Software> Softwares { get; set; }
 
         public void MarkAsModified(Manufacturer item)
         {

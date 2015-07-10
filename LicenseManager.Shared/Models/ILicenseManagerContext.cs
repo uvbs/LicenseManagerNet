@@ -10,6 +10,8 @@ namespace LicenseManager.Shared.Models
     public interface ILicenseManagerContext : IDisposable
     {
         DbSet<Manufacturer> Manufacturers { get; }
+        DbSet<Software> Softwares { get; }
+
         int SaveChanges();
         void MarkAsModified(Manufacturer item);
     }

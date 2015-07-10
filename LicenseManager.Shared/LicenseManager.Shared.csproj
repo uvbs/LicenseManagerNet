@@ -92,6 +92,7 @@
     <Compile Include="Models\ILicenseManagerContext.cs" />
     <Compile Include="Models\LicenseManagerContext.cs" />
     <Compile Include="Models\Manufacturer.cs" />
+    <Compile Include="Models\Software.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

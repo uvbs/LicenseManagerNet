@@ -13,9 +13,11 @@ namespace LicenseManager.Api.Tests
         public TestLicenseManagerContext()
         {
             this.Manufacturers = new TestManufacturerDbSet();
+            this.Softwares = new TestSoftwareDbSet();
         }
 
         public DbSet<Manufacturer> Manufacturers { get; set; }
+        public DbSet<Software> Softwares { get; set; }
 
         public void Dispose()
         {
