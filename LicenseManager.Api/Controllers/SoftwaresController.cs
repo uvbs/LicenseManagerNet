@@ -7,12 +7,14 @@ using System.Net;
 using System.Net.Http;
 using System.Web.Http;
 using System.Web.Http.Description;
+using NLog;
 
 namespace LicenseManager.Api.Controllers
 {
     public class SoftwaresController : ApiController
     {
         private ILicenseManagerContext _db = new LicenseManagerContext();
+        private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
 
         public SoftwaresController() { }
 
@@ -61,6 +63,7 @@ namespace LicenseManager.Api.Controllers
             }
             catch (DbUpdateConcurrencyException ex)
             {
+                Logger.Error(ex);
                 //TODO check if software exits
                 return NotFound();
             }
