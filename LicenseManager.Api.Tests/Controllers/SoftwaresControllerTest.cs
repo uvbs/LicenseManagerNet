@@ -88,6 +88,18 @@ namespace LicenseManager.Api.Tests.Controllers
             Assert.AreEqual(result.Content.Name, item.Name);
         }
 
+        //[TestMethod]
+        public void PostSoftware_ShouldFail_WhenInvalidManufacturerId()
+        {
+            var controller = new SoftwaresController(new TestLicenseManagerContext());
+            var item = GetDemoSoftware();
+
+            var result = controller.PostSoftware(item);
+
+            Assert.IsNotNull(result);
+            Assert.IsInstanceOfType(result, typeof(BadRequestResult));
+        }
+
         [TestMethod]
         public void DeleteSoftware_ShouldReturnOk()
         {
