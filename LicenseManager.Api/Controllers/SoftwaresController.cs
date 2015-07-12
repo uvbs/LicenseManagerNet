@@ -80,6 +80,11 @@ namespace LicenseManager.Api.Controllers
                 return BadRequest(ModelState);
             }
 
+            if (!new ManufacturersController(_db).ManufacturerExists(software.ManufacturerId))
+            {
+                return BadRequest("Manufacturer not exists");
+            }
+
             _db.Softwares.Add(software);
             _db.SaveChanges();
 

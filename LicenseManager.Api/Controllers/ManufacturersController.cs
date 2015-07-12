@@ -117,7 +117,7 @@ namespace LicenseManager.Api.Controllers
             base.Dispose(disposing);
         }
 
-        private bool ManufacturerExists(int id)
+        public bool ManufacturerExists(int id)
         {
             return _db.Manufacturers.Count(e => e.Id == id) > 0;
         }

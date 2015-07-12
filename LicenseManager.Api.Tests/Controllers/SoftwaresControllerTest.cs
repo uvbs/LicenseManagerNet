@@ -1,12 +1,7 @@
 ﻿using LicenseManager.Api.Controllers;
 using LicenseManager.Shared.Models;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Net;
-using System.Text;
-using System.Threading.Tasks;
 using System.Web.Http.Results;
 
 namespace LicenseManager.Api.Tests.Controllers
@@ -97,7 +92,7 @@ namespace LicenseManager.Api.Tests.Controllers
             var result = controller.PostSoftware(item);
 
             Assert.IsNotNull(result);
-            Assert.IsInstanceOfType(result, typeof(BadRequestResult));
+            Assert.IsInstanceOfType(result, typeof(BadRequestErrorMessageResult));
         }
 
         [TestMethod]
