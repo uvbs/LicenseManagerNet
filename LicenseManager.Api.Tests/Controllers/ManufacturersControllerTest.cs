@@ -73,6 +73,18 @@ namespace LicenseManager.Api.Tests.Controllers
         }
 
         [TestMethod]
+        public void PostManufaturer_ShouldFail_WhenManufacturerExists()
+        {
+            var item = new Manufacturer {Name = "Manufacturer 1"};
+            var controller = new ManufacturersController(GetDemoContext());
+
+            var result = controller.PostManufacturer(item);
+
+            Assert.IsNotNull(result);
+            Assert.IsInstanceOfType(result, typeof(BadRequestErrorMessageResult));
+        }
+
+        [TestMethod]
         public void DeleteManufacturer_ShouldReturnOk()
         {
             var context = new TestLicenseManagerContext();

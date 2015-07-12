@@ -86,6 +86,11 @@ namespace LicenseManager.Api.Controllers
                 return BadRequest(ModelState);
             }
 
+            if (ManufacturerExists(manufacturer.Name))
+            {
+                return BadRequest("Manufacturer already exists");
+            }
+
             _db.Manufacturers.Add(manufacturer);
             _db.SaveChanges();
 
@@ -120,6 +125,11 @@ namespace LicenseManager.Api.Controllers
         public bool ManufacturerExists(int id)
         {
             return _db.Manufacturers.Count(e => e.Id == id) > 0;
+        }
+
+        private bool ManufacturerExists(string name)
+        {
+            return _db.Manufacturers.Count(m => m.Name.Equals(name, StringComparison.CurrentCultureIgnoreCase)) > 0;
         }
     }
 }
