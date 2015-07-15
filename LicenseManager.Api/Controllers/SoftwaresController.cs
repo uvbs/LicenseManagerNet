@@ -55,6 +55,11 @@ namespace LicenseManager.Api.Controllers
                 return BadRequest();
             }
 
+            if (!ManufacturerExists(software.ManufacturerId))
+            {
+                return BadRequest("Manufacturer not exists");
+            }
+
             _db.MarkAsModified(software);
 
             try
@@ -80,7 +85,7 @@ namespace LicenseManager.Api.Controllers
                 return BadRequest(ModelState);
             }
 
-            if (!new ManufacturersController(_db).ManufacturerExists(software.ManufacturerId))
+            if (!ManufacturerExists(software.ManufacturerId))
             {
                 return BadRequest("Manufacturer not exists");
             }
@@ -105,6 +110,11 @@ namespace LicenseManager.Api.Controllers
             _db.SaveChanges();
 
             return Ok(software);
+        }
+
+        private bool ManufacturerExists(int id)
+        {
+            return new ManufacturersController(_db).ManufacturerExists(id);
         }
     }
 }

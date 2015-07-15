@@ -1,4 +1,5 @@
-﻿using LicenseManager.Api.Controllers;
+﻿using System.Web.UI;
+using LicenseManager.Api.Controllers;
 using LicenseManager.Shared.Models;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Net;
@@ -49,7 +50,7 @@ namespace LicenseManager.Api.Tests.Controllers
         [TestMethod]
         public void PutSoftware_ShouldReturnStatusCode()
         {
-            var controller = new SoftwaresController(new TestLicenseManagerContext());
+            var controller = new SoftwaresController(GetDemoContext());
             var item = GetDemoSoftware();
 
             var result = controller.PutSoftware(item.Id, item) as StatusCodeResult;
@@ -67,6 +68,21 @@ namespace LicenseManager.Api.Tests.Controllers
             var badresult = controller.PutSoftware(999, GetDemoSoftware());
 
             Assert.IsInstanceOfType(badresult, typeof(BadRequestResult));
+        }
+
+        [TestMethod]
+        public void PutSoftware_ShouldFail_WhenInvalidManufacturerId()
+        {
+            var context = GetDemoContext();
+            var item = GetDemoSoftware();
+            context.Softwares.Add(item);
+            var controller = new SoftwaresController(context);
+            item.ManufacturerId = 999;
+
+            var result = controller.PutSoftware(item.Id, item);
+
+            Assert.IsNotNull(result);
+            Assert.IsInstanceOfType(result, typeof(BadRequestErrorMessageResult));
         }
 
         [TestMethod]
