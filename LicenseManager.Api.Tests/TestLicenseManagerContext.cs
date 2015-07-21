@@ -14,6 +14,7 @@ namespace LicenseManager.Api.Tests
         {
             this.Manufacturers = new TestManufacturerDbSet();
             this.Softwares = new TestSoftwareDbSet();
+            this.Licenses = new TestLicenseDbSet();
         }
 
         public DbSet<Manufacturer> Manufacturers { get; set; }
