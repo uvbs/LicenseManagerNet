@@ -11,6 +11,7 @@ namespace LicenseManager.Shared.Models
     {
         DbSet<Manufacturer> Manufacturers { get; }
         DbSet<Software> Softwares { get; }
+        DbSet<License> Licenses { get; }
 
         int SaveChanges();
         void MarkAsModified(object item);

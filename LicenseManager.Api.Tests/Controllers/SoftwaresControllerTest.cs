@@ -134,8 +134,8 @@ namespace LicenseManager.Api.Tests.Controllers
         {
             var context = new TestLicenseManagerContext();
             context.Manufacturers.Add(new Manufacturer { Id = 1, Name = "DemoManufacturer" });
-            context.Softwares.Add(new Software { Id = 1, Name = "Demo Software 1", ManufacturerId = 1, Description = "Demo1" });
-            context.Softwares.Add(new Software { Id = 2, Name = "Demo Software 2", ManufacturerId = 1, Description = "Demo2" });
+            context.Softwares.Add(new Software { Id = 1, Name = "Demo Software 1", ManufacturerId = 1, Description = "Demo1", Genre = Shared.Enums.Genre.Others });
+            context.Softwares.Add(new Software { Id = 2, Name = "Demo Software 2", ManufacturerId = 1, Description = "Demo2", Genre = Shared.Enums.Genre.Others });
 
             return context;
         }

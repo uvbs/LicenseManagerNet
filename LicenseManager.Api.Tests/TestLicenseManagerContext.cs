@@ -18,6 +18,7 @@ namespace LicenseManager.Api.Tests
 
         public DbSet<Manufacturer> Manufacturers { get; set; }
         public DbSet<Software> Softwares { get; set; }
+        public DbSet<License> Licenses { get; set; }
 
         public void Dispose()
         {

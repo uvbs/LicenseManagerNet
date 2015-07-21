@@ -4,6 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
 using System.Threading.Tasks;
+using LicenseManager.Shared.Enums;
 
 namespace LicenseManager.Shared.Models
 {
@@ -15,6 +16,9 @@ namespace LicenseManager.Shared.Models
         [Required]
         public string Name { get; set; }
         public string Description { get; set; }
+        public Genre Genre { get; set; }
+
         public virtual Manufacturer Manufacturer { get; set; }
+        public virtual ICollection<License> Licenses { get; set; }
     }
 }
