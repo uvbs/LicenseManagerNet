@@ -40,6 +40,13 @@ namespace LicenseManager.Api.Controllers
             return Ok(license);
         }
 
+        // GET: api/Licenses/BySoftwareId/5
+        public IQueryable<License> GetLicensesBySoftwareId(int softwareId)
+        {
+            // TODO check software id
+            return _db.Licenses.Where(l => l.SoftwareId == softwareId);
+        }
+
         // PUT: api/Licenses/5
         [ResponseType(typeof(void))]
         public IHttpActionResult PutLicense(int id, License license)

@@ -4,6 +4,7 @@ using LicenseManager.Shared.Models;
 using LicenseManager.Api.Controllers;
 using System.Web.Http.Results;
 using System.Net;
+using System.Linq;
 
 namespace LicenseManager.Api.Tests.Controllers
 {
@@ -35,6 +36,18 @@ namespace LicenseManager.Api.Tests.Controllers
             Assert.IsNotNull(result);
             Assert.AreEqual(item.Id, result.Content.Id);
             Assert.AreEqual(item.Key, result.Content.Key);
+        }
+
+        [TestMethod]
+        public void GetLicensesBySoftwareId_ShouldReturnLicensesOfThisSoftware()
+        {
+            var controller = new LicensesController(GetDemoContext());
+
+            var result = controller.GetLicensesBySoftwareId(1) as IQueryable<License>;
+
+            Assert.IsNotNull(result);
+            Assert.AreEqual(result.Count(), 2);
+            Assert.AreEqual(result.FirstOrDefault().SoftwareId, 1);
         }
 
         [TestMethod]
