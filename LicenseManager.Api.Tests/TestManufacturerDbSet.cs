@@ -1,4 +1,4 @@
-﻿using LicenseManager.Shared.Models;
+﻿using LicenseManager.Shared;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,7 +11,7 @@ namespace LicenseManager.Api.Tests
     {
         public override Manufacturer Find(params object[] keyValues)
         {
-            return this.SingleOrDefault(m => m.Id == (int)keyValues.Single());
+            return this.SingleOrDefault(m => m.ManufacturerId == (int)keyValues.Single());
         }
     }
 }

@@ -1,4 +1,5 @@
-﻿using LicenseManager.Shared.Models;
+﻿using LicenseManager.Shared;
+using LicenseManager.Shared.Models;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity.Infrastructure;
@@ -10,6 +11,7 @@ using System.Web.Http.Description;
 
 namespace LicenseManager.Api.Controllers
 {
+    [RoutePrefix("api/Licenses")]
     public class LicensesController : ApiController
     {
         private ILicenseManagerContext _db = new LicenseManagerContext();
@@ -27,6 +29,14 @@ namespace LicenseManager.Api.Controllers
             return _db.Licenses;
         }
 
+        // GET: api/softwares/{softwareId}/licenses
+        [Route("~/api/softwares/{softwareId}/license")]
+        public IQueryable<License> GetLicensesBySoftwareId(int softwareId)
+        {
+            return _db.Licenses.Where(l => l.SoftwareId == softwareId);
+        }
+
+
         // GET: api/Licenses/5
         [ResponseType(typeof(License))]
         public IHttpActionResult GetLicense(int id)
@@ -40,13 +50,6 @@ namespace LicenseManager.Api.Controllers
             return Ok(license);
         }
 
-        // GET: api/Licenses/BySoftwareId/5
-        public IQueryable<License> GetLicensesBySoftwareId(int softwareId)
-        {
-            // TODO check software id
-            return _db.Licenses.Where(l => l.SoftwareId == softwareId);
-        }
-
         // PUT: api/Licenses/5
         [ResponseType(typeof(void))]
         public IHttpActionResult PutLicense(int id, License license)
@@ -56,7 +59,7 @@ namespace LicenseManager.Api.Controllers
                 return BadRequest(ModelState);
             }
 
-            if (id != license.Id)
+            if (id != license.LicenseId)
             {
                 return BadRequest();
             }
@@ -96,7 +99,7 @@ namespace LicenseManager.Api.Controllers
             _db.Licenses.Add(license);
             _db.SaveChanges();
 
-            return CreatedAtRoute("DefaultApi", new { id = license.Id }, license);
+            return CreatedAtRoute("DefaultApi", new { id = license.LicenseId }, license);
         }
 
         // DELETE: api/Licenses/5
@@ -117,7 +120,7 @@ namespace LicenseManager.Api.Controllers
 
         private bool LicenseExists(int id)
         {
-            return _db.Licenses.Count(e => e.Id == id) > 0;
+            return _db.Licenses.Count(e => e.LicenseId == id) > 0;
         }
     }
 }

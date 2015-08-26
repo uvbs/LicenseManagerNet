@@ -1,4 +1,4 @@
-﻿using LicenseManager.Shared.Models;
+﻿using LicenseManager.Shared;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,7 +10,7 @@ namespace LicenseManager.Api.Tests
     {
         public override Software Find(params object[] keyValues)
         {
-            return this.SingleOrDefault(s => s.Id == (int)keyValues.Single());
+            return this.SingleOrDefault(s => s.SoftwareId == (int)keyValues.Single());
         }
     }
 }

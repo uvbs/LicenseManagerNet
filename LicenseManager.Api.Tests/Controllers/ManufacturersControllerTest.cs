@@ -2,6 +2,7 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using LicenseManager.Api.Controllers;
 using System.Web.Http.Results;
+using LicenseManager.Shared;
 using LicenseManager.Shared.Models;
 using System.Net;
 
@@ -30,10 +31,10 @@ namespace LicenseManager.Api.Tests.Controllers
             context.Manufacturers.Add(item);
             var controller = new ManufacturersController(context);
 
-            var result = controller.GetManufacturer(item.Id) as OkNegotiatedContentResult<Manufacturer>;
+            var result = controller.GetManufacturer(item.ManufacturerId) as OkNegotiatedContentResult<Manufacturer>;
 
             Assert.IsNotNull(result);
-            Assert.AreEqual(item.Id, result.Content.Id);
+            Assert.AreEqual(item.ManufacturerId, result.Content.ManufacturerId);
         }
 
         [TestMethod]
@@ -42,7 +43,7 @@ namespace LicenseManager.Api.Tests.Controllers
             var controller = new ManufacturersController(new TestLicenseManagerContext());
             var item = GetDemoManufacturer();
 
-            var result = controller.PutManufacturer(item.Id, item) as StatusCodeResult;
+            var result = controller.PutManufacturer(item.ManufacturerId, item) as StatusCodeResult;
 
             Assert.IsNotNull(result);
             Assert.IsInstanceOfType(result, typeof(StatusCodeResult));
@@ -68,7 +69,7 @@ namespace LicenseManager.Api.Tests.Controllers
 
             Assert.IsNotNull(result);
             Assert.AreEqual(result.RouteName, "DefaultApi");
-            Assert.AreEqual(result.RouteValues["id"], result.Content.Id);
+            Assert.AreEqual(result.RouteValues["id"], result.Content.ManufacturerId);
             Assert.AreEqual(result.Content.Name, item.Name);
         }
 
@@ -92,24 +93,24 @@ namespace LicenseManager.Api.Tests.Controllers
             context.Manufacturers.Add(item);
             var controller = new ManufacturersController(context);
 
-            var result = controller.DeleteManufacturer(item.Id) as OkNegotiatedContentResult<Manufacturer>;
+            var result = controller.DeleteManufacturer(item.ManufacturerId) as OkNegotiatedContentResult<Manufacturer>;
 
             Assert.IsNotNull(result);
-            Assert.AreEqual(item.Id, result.Content.Id);
+            Assert.AreEqual(item.ManufacturerId, result.Content.ManufacturerId);
 
         }
 
         private TestLicenseManagerContext GetDemoContext()
         {
             var context = new TestLicenseManagerContext();
-            context.Manufacturers.Add(new Manufacturer { Id = 1, Name = "Manufacturer 1" });
-            context.Manufacturers.Add(new Manufacturer { Id = 2, Name = "Manufacturer 2" });
+            context.Manufacturers.Add(new Manufacturer { ManufacturerId = 1, Name = "Manufacturer 1" });
+            context.Manufacturers.Add(new Manufacturer { ManufacturerId = 2, Name = "Manufacturer 2" });
             return context;
         }
 
         private Manufacturer GetDemoManufacturer()
         {
-            return new Manufacturer { Id = 3, Name = "Demo Manufacturer" };
+            return new Manufacturer { ManufacturerId = 3, Name = "Demo Manufacturer" };
         }
     }
 }

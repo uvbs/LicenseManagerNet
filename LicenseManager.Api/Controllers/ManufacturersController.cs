@@ -8,6 +8,7 @@ using System.Net;
 using System.Net.Http;
 using System.Web.Http;
 using System.Web.Http.Description;
+using LicenseManager.Shared;
 using LicenseManager.Shared.Models;
 
 namespace LicenseManager.Api.Controllers
@@ -51,7 +52,7 @@ namespace LicenseManager.Api.Controllers
                 return BadRequest(ModelState);
             }
 
-            if (id != manufacturer.Id)
+            if (id != manufacturer.ManufacturerId)
             {
                 return BadRequest();
             }
@@ -94,7 +95,7 @@ namespace LicenseManager.Api.Controllers
             _db.Manufacturers.Add(manufacturer);
             _db.SaveChanges();
 
-            return CreatedAtRoute("DefaultApi", new { id = manufacturer.Id }, manufacturer);
+            return CreatedAtRoute("DefaultApi", new { id = manufacturer.ManufacturerId }, manufacturer);
         }
 
         // DELETE: api/Manufacturers/5
@@ -124,7 +125,7 @@ namespace LicenseManager.Api.Controllers
 
         public bool ManufacturerExists(int id)
         {
-            return _db.Manufacturers.Count(e => e.Id == id) > 0;
+            return _db.Manufacturers.Count(e => e.ManufacturerId == id) > 0;
         }
 
         private bool ManufacturerExists(string name)

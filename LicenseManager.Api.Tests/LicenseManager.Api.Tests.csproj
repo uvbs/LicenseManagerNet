@@ -105,6 +105,8 @@
     <Compile Include="Controllers\ManufacturersControllerTest.cs" />
     <Compile Include="Controllers\SoftwaresControllerTest.cs" />
     <Compile Include="Controllers\LicensesControllerTest.cs" />
+    <Compile Include="TestComputerDbSet.cs" />
+    <Compile Include="TestGenresDbSet.cs" />
     <Compile Include="TestLicenseDbSet.cs" />
     <Compile Include="TestSoftwareDbSet.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -112,6 +114,7 @@
     <Compile Include="TestDbSet.cs" />
     <Compile Include="TestLicenseManagerContext.cs" />
     <Compile Include="TestManufacturerDbSet.cs" />
+    <Compile Include="TestUsedOnDbSet.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="App.config" />

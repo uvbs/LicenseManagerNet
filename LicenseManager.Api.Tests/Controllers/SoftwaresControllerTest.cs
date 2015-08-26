@@ -1,6 +1,6 @@
 ﻿using System.Web.UI;
 using LicenseManager.Api.Controllers;
-using LicenseManager.Shared.Models;
+using LicenseManager.Shared;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Net;
 using System.Web.Http.Results;
@@ -30,10 +30,10 @@ namespace LicenseManager.Api.Tests.Controllers
             context.Softwares.Add(item);
             var controller = new SoftwaresController(context);
 
-            var result = controller.GetSoftware(item.Id) as OkNegotiatedContentResult<Software>;
+            var result = controller.GetSoftware(item.SoftwareId) as OkNegotiatedContentResult<Software>;
 
             Assert.IsNotNull(result);
-            Assert.AreEqual(result.Content.Id, item.Id);
+            Assert.AreEqual(result.Content.SoftwareId, item.SoftwareId);
         }
 
         [TestMethod]
@@ -53,7 +53,7 @@ namespace LicenseManager.Api.Tests.Controllers
             var controller = new SoftwaresController(GetDemoContext());
             var item = GetDemoSoftware();
 
-            var result = controller.PutSoftware(item.Id, item) as StatusCodeResult;
+            var result = controller.PutSoftware(item.SoftwareId, item) as StatusCodeResult;
 
             Assert.IsNotNull(result);
             Assert.IsInstanceOfType(result, typeof(StatusCodeResult));
@@ -79,7 +79,7 @@ namespace LicenseManager.Api.Tests.Controllers
             var controller = new SoftwaresController(context);
             item.ManufacturerId = 999;
 
-            var result = controller.PutSoftware(item.Id, item);
+            var result = controller.PutSoftware(item.SoftwareId, item);
 
             Assert.IsNotNull(result);
             Assert.IsInstanceOfType(result, typeof(BadRequestErrorMessageResult));
@@ -95,7 +95,7 @@ namespace LicenseManager.Api.Tests.Controllers
 
             Assert.IsNotNull(result);
             Assert.AreEqual(result.RouteName, "DefaultApi");
-            Assert.AreEqual(result.RouteValues["id"], result.Content.Id);
+            Assert.AreEqual(result.RouteValues["id"], result.Content.SoftwareId);
             Assert.AreEqual(result.Content.Name, item.Name);
         }
 
@@ -119,23 +119,24 @@ namespace LicenseManager.Api.Tests.Controllers
             context.Softwares.Add(item);
             var controller = new SoftwaresController(context);
 
-            var result = controller.DeleteSoftware(item.Id) as OkNegotiatedContentResult<Software>;
+            var result = controller.DeleteSoftware(item.SoftwareId) as OkNegotiatedContentResult<Software>;
 
             Assert.IsNotNull(result);
-            Assert.AreEqual(item.Id, result.Content.Id);
+            Assert.AreEqual(item.SoftwareId, result.Content.SoftwareId);
         }
 
         private Software GetDemoSoftware()
         {
-            return new Software { Id = 3, Description = "Demo", Name = "Demo Software 3", ManufacturerId = 1 };
+            return new Software { SoftwareId = 3, Description = "Demo", Name = "Demo Software 3", ManufacturerId = 1, GenreId = 1 };
         }
 
         private TestLicenseManagerContext GetDemoContext()
         {
             var context = new TestLicenseManagerContext();
-            context.Manufacturers.Add(new Manufacturer { Id = 1, Name = "DemoManufacturer" });
-            context.Softwares.Add(new Software { Id = 1, Name = "Demo Software 1", ManufacturerId = 1, Description = "Demo1", Genre = Shared.Enums.Genre.Others });
-            context.Softwares.Add(new Software { Id = 2, Name = "Demo Software 2", ManufacturerId = 1, Description = "Demo2", Genre = Shared.Enums.Genre.Others });
+            context.Manufacturers.Add(new Manufacturer { ManufacturerId = 1, Name = "DemoManufacturer" });
+            context.Genres.Add(new Genre { GenreId = 1, Name = "Demo Genre 1" });
+            context.Softwares.Add(new Software { SoftwareId = 1, Name = "Demo Software 1", ManufacturerId = 1, Description = "Demo1", GenreId = 1 });
+            context.Softwares.Add(new Software { SoftwareId = 2, Name = "Demo Software 2", ManufacturerId = 1, Description = "Demo2", GenreId = 1 });
 
             return context;
         }

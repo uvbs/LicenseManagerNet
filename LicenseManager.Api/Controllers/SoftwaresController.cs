@@ -1,4 +1,5 @@
 ﻿using System.Data.Entity.Infrastructure;
+using LicenseManager.Shared;
 using LicenseManager.Shared.Models;
 using System;
 using System.Collections.Generic;
@@ -11,6 +12,7 @@ using NLog;
 
 namespace LicenseManager.Api.Controllers
 {
+    [RoutePrefix("api/Softwares")]
     public class SoftwaresController : ApiController
     {
         private ILicenseManagerContext _db = new LicenseManagerContext();
@@ -50,7 +52,7 @@ namespace LicenseManager.Api.Controllers
                 return BadRequest(ModelState);
             }
 
-            if (id != software.Id)
+            if (id != software.SoftwareId)
             {
                 return BadRequest();
             }
@@ -93,7 +95,7 @@ namespace LicenseManager.Api.Controllers
             _db.Softwares.Add(software);
             _db.SaveChanges();
 
-            return CreatedAtRoute("DefaultApi", new {id = software.Id}, software);
+            return CreatedAtRoute("DefaultApi", new {id = software.SoftwareId}, software);
         }
 
         // DELETE: api/Softwares/5

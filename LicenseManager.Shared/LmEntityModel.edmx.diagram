@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="4dee16e2ed5c437d8d9d08097a41cc16" Name="Diagram1">
+        <EntityTypeShape EntityType="LicenseManagerModel.Computer" Width="1.5" PointX="5.25" PointY="5.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="LicenseManagerModel.Genre" Width="1.5" PointX="0.75" PointY="1.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="LicenseManagerModel.License" Width="1.5" PointX="5.25" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="LicenseManagerModel.Manufacturer" Width="1.5" PointX="0.75" PointY="5.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="LicenseManagerModel.Software" Width="1.5" PointX="3" PointY="1.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="LicenseManagerModel.UsedOn" Width="1.5" PointX="7.5" PointY="1.375" IsExpanded="true" />
+        <AssociationConnector Association="LicenseManagerModel.FK_UsedOn_Computer" ManuallyRouted="false" />
+        <AssociationConnector Association="LicenseManagerModel.FK_Software_Genre" ManuallyRouted="false" />
+        <AssociationConnector Association="LicenseManagerModel.FK_License_Software" ManuallyRouted="false" />
+        <AssociationConnector Association="LicenseManagerModel.FK_UsedOn_License" ManuallyRouted="false" />
+        <AssociationConnector Association="LicenseManagerModel.FK_Software_Manufacturer" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

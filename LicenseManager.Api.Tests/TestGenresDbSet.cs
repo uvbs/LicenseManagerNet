@@ -7,11 +7,11 @@ using System.Threading.Tasks;
 
 namespace LicenseManager.Api.Tests
 {
-    public class TestLicenseDbSet : TestDbSet<License>
+    public class TestGenreDbSet : TestDbSet<Genre>
     {
-        public override License Find(params object[] keyValues)
+        public override Genre Find(params object[] keyValues)
         {
-            return this.SingleOrDefault(l => l.LicenseId == (int)keyValues.Single());
+            return this.SingleOrDefault(g => g.GenreId == (int)keyValues.Single());
         }
     }
 }
