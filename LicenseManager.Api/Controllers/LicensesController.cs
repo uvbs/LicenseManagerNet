@@ -33,6 +33,10 @@ namespace LicenseManager.Api.Controllers
         [Route("~/api/softwares/{softwareId}/license")]
         public IQueryable<License> GetLicensesBySoftwareId(int softwareId)
         {
+            if (_db.Softwares.Find(softwareId) == null)
+            {
+                return null;
+            }
             return _db.Licenses.Where(l => l.SoftwareId == softwareId);
         }
 
