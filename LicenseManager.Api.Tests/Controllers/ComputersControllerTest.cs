@@ -2,6 +2,7 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using LicenseManager.Shared;
 using LicenseManager.Api.Controllers;
+using System.Linq;
 
 namespace LicenseManager.Api.Tests.Controllers
 {
@@ -26,10 +27,9 @@ namespace LicenseManager.Api.Tests.Controllers
             var context = GetDemoContext();
             var controller = new ComputersController(context);
 
-            var result = controller.GetComputers("686990B4-3263-4566-9713-27666E894AF3") as TestComputerDbSet;
-
+            var result = controller.GetComputers("686990B4-3263-4566-9713-27666E894AF3") as IQueryable<Computer>;
             Assert.IsNotNull(result);
-            Assert.AreEqual(2, result.Local.Count);
+            Assert.AreEqual(2, result.Count());
         }
 
         

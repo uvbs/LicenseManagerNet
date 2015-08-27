@@ -29,7 +29,6 @@ namespace LicenseManager.Api.Controllers
         [Route("api/computers")]
         public IQueryable<Computer> GetComputers()
         {
-            // TODO should return only the computers of current user?
             return _db.Computers;
         }
 
@@ -37,7 +36,13 @@ namespace LicenseManager.Api.Controllers
         [Route("api/{userId}/Computers")]
         public IQueryable<Computer> GetComputers(string userId)
         {
-            return _db.Computers.Where(c => c.UserId.Equals(userId, StringComparison.InvariantCultureIgnoreCase));
+            //var computers = _db.Computers.Where(c => c.UserId.Equals(userId, StringComparison.CurrentCultureIgnoreCase));
+            var computers = _db.Computers.Where(c => c.UserId == userId);
+            if (computers == null)
+            {
+                throw new ArgumentNullException();
+            }
+            return computers;
         }
 
         // GET: api/Computers/{id}
