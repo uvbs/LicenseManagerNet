@@ -1,4 +1,5 @@
-﻿using LicenseManager.Shared;
+﻿using LicenseManager.Api.ViewModels;
+using LicenseManager.Shared;
 using LicenseManager.Shared.Models;
 using System;
 using System.Collections.Generic;
@@ -24,20 +25,39 @@ namespace LicenseManager.Api.Controllers
         }
 
         // GET: api/Licenses
-        public IQueryable<License> GetLicenses()
+        public IQueryable<LicenseViewModel> GetLicenses()
         {
-            return _db.Licenses;
+            var licenses = _db.Licenses
+                .Select(l => new LicenseViewModel()
+                {
+                    Id = l.LicenseId,
+                    Software = l.Software.Manufacturer.Name + " " + l.Software.Name,
+                    Edition = l.Edition,
+                    ActivationKey = l.ActivationKey,
+                    VolumeLicense = (l.VolumeLicense == 1)
+                });
+            return licenses;
         }
 
         // GET: api/softwares/{softwareId}/licenses
-        [Route("~/api/softwares/{softwareId}/license")]
-        public IQueryable<License> GetLicensesBySoftwareId(int softwareId)
+        [HttpGet, Route("~/api/softwares/{softwareId}/licenses")]
+        public IQueryable<LicenseViewModel> GetLicensesBySoftwareId(int softwareId)
         {
             if (_db.Softwares.Find(softwareId) == null)
             {
                 return null;
             }
-            return _db.Licenses.Where(l => l.SoftwareId == softwareId);
+            var licenses = _db.Licenses.Where(l => l.SoftwareId == softwareId)
+                .Select(l => new LicenseViewModel()
+                {
+                    Id = l.LicenseId,
+                    Software = l.Software.Manufacturer.Name + " " + l.Software.Name,
+                    Edition = l.Edition,
+                    ActivationKey = l.ActivationKey,
+                    VolumeLicense = (l.VolumeLicense == 1)
+                });
+
+            return licenses;
         }
 
 
@@ -107,7 +127,7 @@ namespace LicenseManager.Api.Controllers
         }
 
         // DELETE: api/Licenses/5
-        [ResponseType(typeof(Manufacturer))]
+        [ResponseType(typeof(License))]
         public IHttpActionResult DeleteLicense(int id)
         {
             License license = _db.Licenses.Find(id);

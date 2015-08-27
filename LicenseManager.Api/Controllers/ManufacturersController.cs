@@ -10,6 +10,7 @@ using System.Web.Http;
 using System.Web.Http.Description;
 using LicenseManager.Shared;
 using LicenseManager.Shared.Models;
+using LicenseManager.Api.ViewModels;
 
 namespace LicenseManager.Api.Controllers
 {
@@ -25,9 +26,16 @@ namespace LicenseManager.Api.Controllers
         }
 
         // GET: api/Manufacturers
-        public IQueryable<Manufacturer> GetManufacturers()
+        public IQueryable<ManufacturerViewModel> GetManufacturers()
         {
-            return _db.Manufacturers;
+            var manufacturers = from m in _db.Manufacturers
+                                select new ManufacturerViewModel()
+                                {
+                                    Id = m.ManufacturerId,
+                                    Name = m.Name,
+                                    Homepage = m.Homepage
+                                };
+            return manufacturers;
         }
 
         // GET: api/Manufacturers/5

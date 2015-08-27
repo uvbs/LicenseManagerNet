@@ -6,6 +6,7 @@ using LicenseManager.Api.Controllers;
 using System.Web.Http.Results;
 using System.Net;
 using System.Linq;
+using LicenseManager.Api.ViewModels;
 
 namespace LicenseManager.Api.Tests.Controllers
 {
@@ -18,10 +19,10 @@ namespace LicenseManager.Api.Tests.Controllers
             var context = GetDemoContext();
             var controller = new LicensesController(context);
 
-            var result = controller.GetLicenses() as TestLicenseDbSet;
+            var result = controller.GetLicenses() as IQueryable<LicenseViewModel>;
 
             Assert.IsNotNull(result);
-            Assert.AreEqual(context.Licenses.Local.Count, result.Local.Count);
+            Assert.AreEqual(context.Licenses.Local.Count, result.Count());
         }
 
         [TestMethod]

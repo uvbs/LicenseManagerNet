@@ -9,6 +9,7 @@ using System.Net.Http;
 using System.Web.Http;
 using System.Web.Http.Description;
 using NLog;
+using LicenseManager.Api.ViewModels;
 
 namespace LicenseManager.Api.Controllers
 {
@@ -26,20 +27,39 @@ namespace LicenseManager.Api.Controllers
         }
 
         // GET api/Softwares
-        public IQueryable<Software> GetSoftwares()
+        public IQueryable<SoftwareViewModel> GetSoftwares()
         {
-            return _db.Softwares;
+            var softwares = from s in _db.Softwares
+                            select new SoftwareViewModel()
+                            {
+                                Id = s.SoftwareId,
+                                Name = s.Name,
+                                ManufacturerName = s.Manufacturer.Name,
+                                GenreName = s.Genre.Name,
+                                Description = s.Description
+                            };
+            return softwares;
         }
 
         // GET api/Softwares/5
-        [ResponseType(typeof(Software))]
+        [ResponseType(typeof(SoftwareViewModel))]
         public IHttpActionResult GetSoftware(int id)
         {
-            Software software = _db.Softwares.Find(id);
-            if (null == software)
+            Software item = _db.Softwares.Find(id);
+            if (null == item)
             {
                 return NotFound();
             }
+
+            var software = new SoftwareViewModel()
+            {
+                Id = item.SoftwareId,
+                Name = item.Name,
+                ManufacturerName = item.Manufacturer.Name,
+                GenreName = item.Genre.Name,
+                Description = item.Description
+            };
+
             return Ok(software);
         }
 
