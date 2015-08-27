@@ -6,6 +6,7 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using System.Web.Http.Description;
 
 namespace LicenseManager.Api.Controllers
 {
@@ -32,10 +33,24 @@ namespace LicenseManager.Api.Controllers
             return _db.Computers;
         }
 
-        [Route("api/computers/{userId}")]
+        // GET: api/{userId}/Computers}
+        [Route("api/{userId}/Computers")]
         public IQueryable<Computer> GetComputers(string userId)
         {
             return _db.Computers.Where(c => c.UserId.Equals(userId, StringComparison.InvariantCultureIgnoreCase));
+        }
+
+        // GET: api/Computers/{id}
+        [Route("api/computers/{id}")]
+        [ResponseType(typeof(Computer))]
+        public IHttpActionResult GetComputer(int id)
+        {
+            Computer computer = _db.Computers.Find(id);
+            if (computer == null)
+            {
+                return NotFound();
+            }
+            return Ok(computer);
         }
 
     }
