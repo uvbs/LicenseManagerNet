@@ -12,5 +12,12 @@ namespace LicenseManager.Api.ViewModels
         public string ManufacturerName { get; set; }
         public string GenreName { get; set; }
         public string Description { get; set; }
+
+        public IEnumerable<LicenseViewModel> Licenses { get; set; }
+
+        public override string ToString()
+        {
+            return string.Format("{0} {1}", ManufacturerName, Name);
+        }
     }
 }

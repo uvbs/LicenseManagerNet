@@ -5,6 +5,7 @@ using System.Net.Http;
 using System.Web.Http;
 using Microsoft.Owin.Security.OAuth;
 using Newtonsoft.Json.Serialization;
+using System.Net.Http.Headers;
 
 namespace LicenseManager.Api
 {
@@ -16,6 +17,8 @@ namespace LicenseManager.Api
             // Web-API für die ausschließliche Verwendung von Trägertokenauthentifizierung konfigurieren.
             config.SuppressDefaultHostAuthentication();
             config.Filters.Add(new HostAuthenticationFilter(OAuthDefaults.AuthenticationType));
+
+            config.Formatters.JsonFormatter.SupportedMediaTypes.Add(new MediaTypeHeaderValue("text/html"));
 
             // Web-API-Routen
             config.MapHttpAttributeRoutes();

@@ -27,6 +27,7 @@ namespace LicenseManager.Api.Controllers
         }
 
         // GET api/Softwares
+        [Route("")]
         public IQueryable<SoftwareViewModel> GetSoftwares()
         {
             var softwares = from s in _db.Softwares
@@ -41,8 +42,32 @@ namespace LicenseManager.Api.Controllers
             return softwares;
         }
 
+        // GET api/Softwares
+        [Route("{genre}")]
+        public IQueryable<SoftwareViewModel> GetSoftwaresByGenre(string genre)
+        {
+            var searched_genre = _db.Genres.Where(g => g.Name.Equals(genre, StringComparison.OrdinalIgnoreCase)).SingleOrDefault();
+            if (searched_genre == null)
+            {
+                throw new KeyNotFoundException();
+            }
+
+            var softwares = from s in _db.Softwares
+                            where s.GenreId == searched_genre.GenreId
+                            select new SoftwareViewModel()
+                            {
+                                Id = s.SoftwareId,
+                                Name = s.Name,
+                                ManufacturerName = s.Manufacturer.Name,
+                                GenreName = s.Genre.Name,
+                                Description = s.Description
+                            };
+            return softwares;
+        }
+
         // GET api/Softwares/5
         [ResponseType(typeof(SoftwareViewModel))]
+        [Route("{id:int}")]
         public IHttpActionResult GetSoftware(int id)
         {
             Software item = _db.Softwares.Find(id);
@@ -59,6 +84,18 @@ namespace LicenseManager.Api.Controllers
                 GenreName = item.Genre.Name,
                 Description = item.Description
             };
+
+            if (item.Licenses.Count > 0)
+            {
+                software.Licenses = item.Licenses.Select(l => new LicenseViewModel
+                {
+                    Id = l.LicenseId,
+                    ActivationKey = l.ActivationKey,
+                    Edition = l.Edition,
+                    Software = software.ToString(),
+                    VolumeLicense = (l.VolumeLicense == 1)
+                });
+            }
 
             return Ok(software);
         }

@@ -39,14 +39,21 @@ namespace LicenseManager.Api.Controllers
         }
 
         // GET: api/Manufacturers/5
-        [ResponseType(typeof(Manufacturer))]
+        [ResponseType(typeof(ManufacturerViewModel))]
         public IHttpActionResult GetManufacturer(int id)
         {
-            Manufacturer manufacturer = _db.Manufacturers.Find(id);
-            if (manufacturer == null)
+            var item = _db.Manufacturers.Find(id);
+            if (item == null)
             {
                 return NotFound();
             }
+
+            var manufacturer = new ManufacturerViewModel()
+            {
+                Id = item.ManufacturerId,
+                Name = item.Name,
+                Homepage = item.Homepage
+            };
 
             return Ok(manufacturer);
         }
