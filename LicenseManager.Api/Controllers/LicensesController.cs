@@ -31,7 +31,7 @@ namespace LicenseManager.Api.Controllers
                 .Select(l => new LicenseViewModel()
                 {
                     Id = l.LicenseId,
-                    Software = l.Software.Manufacturer.Name + " " + l.Software.Name,
+                    //Software = l.Software.Manufacturer.Name + " " + l.Software.Name,
                     Edition = l.Edition,
                     ActivationKey = l.ActivationKey,
                     VolumeLicense = (l.VolumeLicense == 1)
@@ -51,7 +51,7 @@ namespace LicenseManager.Api.Controllers
                 .Select(l => new LicenseViewModel()
                 {
                     Id = l.LicenseId,
-                    Software = l.Software.Manufacturer.Name + " " + l.Software.Name,
+                    //Software = l.Software.Manufacturer.Name + " " + l.Software.Name,
                     Edition = l.Edition,
                     ActivationKey = l.ActivationKey,
                     VolumeLicense = (l.VolumeLicense == 1)
@@ -78,6 +78,8 @@ namespace LicenseManager.Api.Controllers
         [ResponseType(typeof(void))]
         public IHttpActionResult PutLicense(int id, License license)
         {
+            license.ModificationDate = DateTime.Now;
+
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
@@ -87,7 +89,7 @@ namespace LicenseManager.Api.Controllers
             {
                 return BadRequest();
             }
-
+            
             _db.MarkAsModified(license);
 
             try
@@ -119,7 +121,7 @@ namespace LicenseManager.Api.Controllers
             }
 
             // TODO implement check if license already exists (Key and SoftwareId)
-
+            license.CreationDate = DateTime.Now;
             _db.Licenses.Add(license);
             _db.SaveChanges();
 

@@ -8,7 +8,6 @@ namespace LicenseManager.Api.ViewModels
     public class LicenseViewModel
     {
         public int Id { get; set; }
-        public string Software { get; set; }
         public string Edition { get; set; }
         public string ActivationKey { get; set; }
         public bool VolumeLicense { get; set; }

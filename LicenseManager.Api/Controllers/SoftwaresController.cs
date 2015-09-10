@@ -41,24 +41,18 @@ namespace LicenseManager.Api.Controllers
             return softwares;
         }
 
-        // GET api/Softwares
-        [Route("{genre}")]
-        public IQueryable<SoftwareViewModel> GetSoftwaresByGenre(string genre)
+        // GET api/Manufacturers/{manufacturerId}/Softwares
+        [Route("~/api/Manufacturers/{manufacturerId}/Softwares")]
+        public IQueryable<SoftwareViewModel> GetSoftwaresByManufacturer(int manufacturerId)
         {
-            var searched_genre = _db.Genres.Where(g => g.Name.Equals(genre, StringComparison.OrdinalIgnoreCase)).SingleOrDefault();
-            if (searched_genre == null)
-            {
-                throw new KeyNotFoundException();
-            }
-
             var softwares = from s in _db.Softwares
-                            where s.GenreId == searched_genre.GenreId
-                            select new SoftwareViewModel()
+                            where s.ManufacturerId == manufacturerId
+                            select new SoftwareViewModel
                             {
                                 Id = s.SoftwareId,
                                 Name = s.Name,
                                 ManufacturerName = s.Manufacturer.Name,
-                                GenreName = s.Genre.Name,
+                                GenreName = s.Genre.Name
                             };
             return softwares;
         }
@@ -68,7 +62,27 @@ namespace LicenseManager.Api.Controllers
         [Route("{id:int}")]
         public IHttpActionResult GetSoftware(int id)
         {
-            Software item = _db.Softwares.Find(id);
+            return GetSoftware(-1, id);
+        }
+
+        // GET api/Manufacturers/{manufacturerId}/Softwares/5
+        [ResponseType(typeof(SoftwareViewModel))]
+        [Route("~/api/manufacturers/{manufacturerId}/softwares/{id:int}")]
+        public IHttpActionResult GetSoftware(int manufacturerId, int id)
+        {
+            Logger.Debug("ManufacturerId: " + manufacturerId);
+
+            Software item = null;
+            if (manufacturerId > 0)
+            {
+                item = _db.Softwares.FirstOrDefault(s => s.SoftwareId == id && s.ManufacturerId == manufacturerId);
+            }
+
+            if (manufacturerId == -1)
+            {
+                item = _db.Softwares.Find(id);
+            }
+            
             if (null == item)
             {
                 return NotFound();
@@ -92,7 +106,6 @@ namespace LicenseManager.Api.Controllers
                     Id = l.LicenseId,
                     ActivationKey = l.ActivationKey,
                     Edition = l.Edition,
-                    Software = software.ToString(),
                     VolumeLicense = (l.VolumeLicense == 1)
                 });
             }
@@ -137,6 +150,7 @@ namespace LicenseManager.Api.Controllers
 
         // POST: api/Softwares
         [ResponseType(typeof(Software))]
+        [Route("")]
         public IHttpActionResult PostSoftware(Software software)
         {
             if (!ModelState.IsValid)
@@ -152,6 +166,7 @@ namespace LicenseManager.Api.Controllers
             _db.Softwares.Add(software);
             _db.SaveChanges();
 
+            //TODO checked created at route
             return CreatedAtRoute("DefaultApi", new {id = software.SoftwareId}, software);
         }
 

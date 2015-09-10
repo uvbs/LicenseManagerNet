@@ -33,7 +33,7 @@ namespace LicenseManager.Api.Controllers
         }
 
         // GET: api/{userId}/Computers}
-        [Route("api/{userId}/Computers")]
+        [Route("~/api/{userId}/Computers")]
         public IQueryable<Computer> GetComputers(string userId)
         {
             //var computers = _db.Computers.Where(c => c.UserId.Equals(userId, StringComparison.CurrentCultureIgnoreCase));
@@ -46,7 +46,7 @@ namespace LicenseManager.Api.Controllers
         }
 
         // GET: api/Computers/{id}
-        [Route("api/computers/{id}")]
+        [Route("{id:int}")]
         [ResponseType(typeof(Computer))]
         public IHttpActionResult GetComputer(int id)
         {
@@ -58,5 +58,14 @@ namespace LicenseManager.Api.Controllers
             return Ok(computer);
         }
 
+        // GET: api/Computers/{id}/Installed
+        [Route("{id}/Installed")]
+        public string GetInstalledLicenses(int id)
+        {
+            var usedons = _db.UsedOns.Where(u => u.ComputerId == id);
+            return usedons.Count().ToString();
+        }
+
+        // TODO PUT install license on host
     }
 }

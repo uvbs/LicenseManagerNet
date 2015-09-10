@@ -30,7 +30,7 @@ namespace LicenseManager.Api.Tests.Controllers
             context.Softwares.Add(item);
             var controller = new SoftwaresController(context);
 
-            var result = controller.GetSoftware(item.SoftwareId) as OkNegotiatedContentResult<Software>;
+            var result = controller.GetSoftware(-1, item.SoftwareId) as OkNegotiatedContentResult<Software>;
 
             Assert.IsNotNull(result);
             Assert.AreEqual(result.Content.SoftwareId, item.SoftwareId);
@@ -41,7 +41,7 @@ namespace LicenseManager.Api.Tests.Controllers
         {
             var controller = new SoftwaresController(new TestLicenseManagerContext());
 
-            var result = controller.GetSoftware(999);
+            var result = controller.GetSoftware(-1, 999);
 
             Assert.IsNotNull(result);
             Assert.IsInstanceOfType(result, typeof(NotFoundResult));
