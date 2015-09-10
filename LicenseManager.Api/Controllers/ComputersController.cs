@@ -26,7 +26,7 @@ namespace LicenseManager.Api.Controllers
         }
 
         // GET: api/Computers
-        [Route("api/computers")]
+        [Route("")]
         public IQueryable<Computer> GetComputers()
         {
             return _db.Computers;

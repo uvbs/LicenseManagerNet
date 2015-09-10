@@ -37,7 +37,6 @@ namespace LicenseManager.Api.Controllers
                                 Name = s.Name,
                                 ManufacturerName = s.Manufacturer.Name,
                                 GenreName = s.Genre.Name,
-                                Description = s.Description
                             };
             return softwares;
         }
@@ -60,7 +59,6 @@ namespace LicenseManager.Api.Controllers
                                 Name = s.Name,
                                 ManufacturerName = s.Manufacturer.Name,
                                 GenreName = s.Genre.Name,
-                                Description = s.Description
                             };
             return softwares;
         }
@@ -76,11 +74,13 @@ namespace LicenseManager.Api.Controllers
                 return NotFound();
             }
 
-            var software = new SoftwareViewModel()
+            var software = new SoftwareDetailViewModel()
             {
                 Id = item.SoftwareId,
                 Name = item.Name,
+                ManufacturerId = item.ManufacturerId,
                 ManufacturerName = item.Manufacturer.Name,
+                GenreId = item.GenreId,
                 GenreName = item.Genre.Name,
                 Description = item.Description
             };

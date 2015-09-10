@@ -219,8 +219,11 @@
     <Compile Include="Providers\ApplicationOAuthProvider.cs" />
     <Compile Include="Results\ChallengeResult.cs" />
     <Compile Include="Startup.cs" />
+    <Compile Include="ViewModels\ComputerViewModel.cs" />
     <Compile Include="ViewModels\LicenseViewModel.cs" />
+    <Compile Include="ViewModels\ManufacturerDetailViewModel.cs" />
     <Compile Include="ViewModels\ManufacturerViewModel.cs" />
+    <Compile Include="ViewModels\SoftwareDetailViewModel.cs" />
     <Compile Include="ViewModels\SoftwareViewModel.cs" />
   </ItemGroup>
   <ItemGroup>

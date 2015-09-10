@@ -1,8 +1,6 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 14
-VisualStudioVersion = 14.0.22823.1
-MinimumVisualStudioVersion = 10.0.40219.1
+# Visual Studio 2012
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LicenseManager.Api", "LicenseManager.Api\LicenseManager.Api.csproj", "{D269C460-9D5C-4869-8C3A-5CA5221D6944}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LicenseManager.Api.Tests", "LicenseManager.Api.Tests\LicenseManager.Api.Tests.csproj", "{256CC242-9936-4C6D-9E57-B0F0977F6443}"

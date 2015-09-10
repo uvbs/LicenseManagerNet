@@ -5,9 +5,7 @@ using System.Web;
 
 namespace LicenseManager.Api.ViewModels
 {
-    public class ManufacturerViewModel
+    public class ComputerViewModel
     {
-        public int Id { get; set; }
-        public string Name { get; set; }
     }
 }

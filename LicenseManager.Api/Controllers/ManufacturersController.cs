@@ -33,13 +33,12 @@ namespace LicenseManager.Api.Controllers
                                 {
                                     Id = m.ManufacturerId,
                                     Name = m.Name,
-                                    Homepage = m.Homepage
                                 };
             return manufacturers;
         }
 
         // GET: api/Manufacturers/5
-        [ResponseType(typeof(ManufacturerViewModel))]
+        [ResponseType(typeof(ManufacturerDetailViewModel))]
         public IHttpActionResult GetManufacturer(int id)
         {
             var item = _db.Manufacturers.Find(id);
@@ -48,7 +47,7 @@ namespace LicenseManager.Api.Controllers
                 return NotFound();
             }
 
-            var manufacturer = new ManufacturerViewModel()
+            var manufacturer = new ManufacturerDetailViewModel()
             {
                 Id = item.ManufacturerId,
                 Name = item.Name,
