@@ -33,6 +33,7 @@ namespace LicenseManager.Client.WebApiClient
             {
                 return false;
             }
+
             return true;
         }
     }

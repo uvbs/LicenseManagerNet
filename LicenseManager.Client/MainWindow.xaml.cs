@@ -40,14 +40,8 @@ namespace LicenseManager.Client
                 .ServerCertificateValidationCallback +=
                 (sender, cert, chain, sslPolicyErrors) => true;
             
-            //TEST
-            Global.Properties.AuthenticationToken = new TokenModel
-            {
-                AccessToken = "le691iwe1aOphYj-1ECKS0r6eNr91teHcb6gkOCBG1bqdfDUpCXvQFf1aBnBYUjdflmZFYJHaA9yH2QaoFYmM7YXHpdVDskazOXT9_v-PsdpEnUJHNnmG4UBQTcyFz8rMOMFbb9i_dJ2Q9kGfWwV2t3YgsWVc_lv6ZqVQxc7asDBaZWhD0YjxQEbTNefCTU6DcvJOp66ngT_kxo_Ppoui6WCJB92MRO1c-xe7TLfiMHi_kHyJoXOVSSIkRaqW7CgYv6n6AxFj5QQ0KhHDMYY-wkoLOGgU_vqwG3yXaj8uzHryvuVNEL4htSvLs7X5nN-8pFRhGjEkozqVVuqn2zCbOIV_9Ir-wZ9nQEAdLVr4xY1pfY6UcVYfm3em7J2ePyp0VnVShZ1a5d6ckTvCJ1erjRzWT7_4sGSDKX4UOVO6oKtrXd5RPM0U0-y4afD8Lrouks9qTTGhELeJV0nGD-ipoVOiDNWTjWDVFQFUZAba90"
-            };
-
             Global.Properties.BaseUrl = Global.Properties.DevUrlSsl;
-
+            await Login();
             await LoadContent();
 
             lst1.Items.Add("Test");
@@ -63,6 +57,23 @@ namespace LicenseManager.Client
                 foreach (var item in Global.Content.Softwares)
                 {
                     lst1.Items.Add(item);
+                }
+            }
+        }
+
+
+        //TODO Testcode
+        private async Task Login()
+        {
+            using (var client = new AccountClient())
+            {
+                TokenModel token = await client.Login("test@to-wer.de", "Test123;");
+                if(token != null)
+                {
+                    Global.Properties.AuthenticationToken = token;
+                    _logger.Debug(token.ExpiresAt);
+                    _logger.Debug(Global.Properties.AuthenticationToken.AccessToken);
+                    _logger.Debug(Global.Properties.AuthenticationToken.ExpiresIn);
                 }
             }
         }
@@ -95,6 +106,7 @@ namespace LicenseManager.Client
                 txtName.Text = software.Name;
                 txtGenre.Text = software.GenreName;
                 txtDescription.Text = software.Description;
+                DataGrid1.ItemsSource = software.Licenses;
             }
         }
     }
