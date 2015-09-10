@@ -25,13 +25,19 @@ namespace LicenseManager.Client.WebApiClient
             //_client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
         }
 
-        public async Task GetManufacturers()
+        public async Task<List<ManufacturerDto>> GetManufacturers()
         {
-            LOGGER.Debug("Try getting manufacturers");
             HttpResponseMessage response = await _client.GetAsync("api/manufacturers", HttpCompletionOption.ResponseContentRead);
-            LOGGER.Debug("reponse status code: " + response.StatusCode);
+            List<ManufacturerDto> manufacturers = await response.Content.ReadAsAsync<List<ManufacturerDto>>();
+            return manufacturers;
+        }
 
-            Global.Content.Manufacturers = await response.Content.ReadAsAsync<List<ManufacturerDto>>();
+        public async Task<ManufacturerDetailDto> GetManufacturer(int id)
+        {
+            HttpResponseMessage response = await _client.GetAsync("api/manufacturers/" + id);
+            ManufacturerDetailDto manufacturer = await response.Content.ReadAsAsync<ManufacturerDetailDto>();
+
+            return manufacturer;
         }
 
         public void Dispose()

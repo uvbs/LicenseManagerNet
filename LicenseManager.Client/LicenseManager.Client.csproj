@@ -66,11 +66,14 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Dtos\ManufacturerDetailDto.cs" />
     <Compile Include="Dtos\ManufacturerDto.cs" />
+    <Compile Include="Dtos\SoftwareDto.cs" />
     <Compile Include="Global\Content.cs" />
     <Compile Include="Global\Properties.cs" />
     <Compile Include="WebApiClient\AbstractWebApiClient.cs" />
     <Compile Include="WebApiClient\ManufacturersClient.cs" />
+    <Compile Include="WebApiClient\SoftwaresClient.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>

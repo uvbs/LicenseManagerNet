@@ -46,10 +46,10 @@ namespace LicenseManager.Client
 
         private void RefreshData()
         {
-            if (Global.Content.Manufacturers.Count > 0)
+            if (Global.Content.Softwares.Count > 0)
             {
                 lst1.Items.Clear();
-                foreach (var item in Global.Content.Manufacturers)
+                foreach (var item in Global.Content.Softwares)
                 {
                     lst1.Items.Add(item);
                 }
@@ -60,7 +60,12 @@ namespace LicenseManager.Client
         {
             using (var client = new ManufacturersClient(Global.Properties.BaseUrl))
             {
-                await client.GetManufacturers();
+                Global.Content.Manufacturers = await client.GetManufacturers();
+            }
+
+            using (var client = new SoftwaresClient(Global.Properties.BaseUrl))
+            {
+                Global.Content.Softwares = await client.GetSoftwares();
             }
         }
     }

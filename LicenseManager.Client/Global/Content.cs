@@ -10,5 +10,6 @@ namespace LicenseManager.Client.Global
     public class Content
     {
         public static List<ManufacturerDto> Manufacturers { get; set; }
+        public static List<SoftwareDto> Softwares { get; set; }
     }
 }
