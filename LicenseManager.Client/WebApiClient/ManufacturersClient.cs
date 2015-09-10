@@ -21,8 +21,8 @@ namespace LicenseManager.Client.WebApiClient
             {
                 BaseAddress = new Uri(baseAddress)
             };
-            //_client.DefaultRequestHeaders.Accept.Clear();
-            //_client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+            _client.DefaultRequestHeaders.Accept.Clear();
+            _client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
         }
 
         public async Task<List<ManufacturerDto>> GetManufacturers()

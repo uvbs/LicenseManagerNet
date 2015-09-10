@@ -4,6 +4,7 @@ using NLog;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Net.Http;
 using System.Text;
 using System.Threading;
@@ -35,7 +36,17 @@ namespace LicenseManager.Client
 
         public async void Startup()
         {
-            Global.Properties.BaseUrl = Global.Properties.DevUrl;
+            ServicePointManager
+                .ServerCertificateValidationCallback +=
+                (sender, cert, chain, sslPolicyErrors) => true;
+            
+            //TEST
+            Global.Properties.AuthenticationToken = new TokenModel
+            {
+                AccessToken = "le691iwe1aOphYj-1ECKS0r6eNr91teHcb6gkOCBG1bqdfDUpCXvQFf1aBnBYUjdflmZFYJHaA9yH2QaoFYmM7YXHpdVDskazOXT9_v-PsdpEnUJHNnmG4UBQTcyFz8rMOMFbb9i_dJ2Q9kGfWwV2t3YgsWVc_lv6ZqVQxc7asDBaZWhD0YjxQEbTNefCTU6DcvJOp66ngT_kxo_Ppoui6WCJB92MRO1c-xe7TLfiMHi_kHyJoXOVSSIkRaqW7CgYv6n6AxFj5QQ0KhHDMYY-wkoLOGgU_vqwG3yXaj8uzHryvuVNEL4htSvLs7X5nN-8pFRhGjEkozqVVuqn2zCbOIV_9Ir-wZ9nQEAdLVr4xY1pfY6UcVYfm3em7J2ePyp0VnVShZ1a5d6ckTvCJ1erjRzWT7_4sGSDKX4UOVO6oKtrXd5RPM0U0-y4afD8Lrouks9qTTGhELeJV0nGD-ipoVOiDNWTjWDVFQFUZAba90"
+            };
+
+            Global.Properties.BaseUrl = Global.Properties.DevUrlSsl;
 
             await LoadContent();
 
@@ -66,6 +77,24 @@ namespace LicenseManager.Client
             using (var client = new SoftwaresClient(Global.Properties.BaseUrl))
             {
                 Global.Content.Softwares = await client.GetSoftwares();
+            }
+        }
+
+        private async void lst1_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (lst1.SelectedItem != null)
+            {
+                SoftwareDetailDto software = null;
+                using(var client = new SoftwaresClient(Global.Properties.BaseUrl))
+                {
+                    software = await client.GetSoftware(((SoftwareDto)lst1.SelectedItem).Id);
+                }
+                SoftwareDetailGrid.Visibility = System.Windows.Visibility.Visible;
+                lblTitle.Content = lst1.SelectedItem.ToString();
+                txtManufacturer.Text = software.ManufacturerName;
+                txtName.Text = software.Name;
+                txtGenre.Text = software.GenreName;
+                txtDescription.Text = software.Description;
             }
         }
     }

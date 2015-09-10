@@ -11,6 +11,33 @@
             <ColumnDefinition Width="300px" />
             <ColumnDefinition />
         </Grid.ColumnDefinitions>
-        <ListBox Name="lst1" HorizontalAlignment="Left" Margin="0,0,0,0" VerticalAlignment="Top" Grid.Row="1" Grid.Column="0"/>
+        <ListBox Name="lst1" HorizontalAlignment="Left" Margin="0,0,0,0" VerticalAlignment="Top" Grid.Row="1" Grid.Column="0" SelectionChanged="lst1_SelectionChanged" />
+        <Grid Grid.Row="1" Grid.Column="1" Background="AliceBlue" Visibility="Hidden" Name="SoftwareDetailGrid">
+            <Grid.RowDefinitions>
+                <RowDefinition />
+                <RowDefinition Height="*" />
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition  Height="*"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition />
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+            
+            <Label Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Name="lblTitle" FontWeight="Bold" />
+            
+            <Label Grid.Row="2" Grid.Column="0" Name="lblManufacturer">Manufacturer</Label>
+            <TextBox Grid.Row="2" Grid.Column="1" Name="txtManufacturer" IsReadOnly="True" />
+            <Label Grid.Row="3" Grid.Column="0" Name="lblName">Name</Label>            
+            <TextBox Grid.Row="3" Grid.Column="1" Name="txtName" IsReadOnly="True" />
+            <Label Grid.Row="4" Grid.Column="0" Name="lblGenre">Genre</Label>
+            <TextBox Grid.Row="4" Grid.Column="1" Name="txtGenre" IsReadOnly="True" />
+            <Label Grid.Row="5" Grid.Column="0" Name="lblDescription">Description</Label>
+            <TextBox Grid.Row="5" Grid.Column="1" Name="txtDescription" IsReadOnly="True" />
+            <!-- Licenses grid -->
+        </Grid>
     </Grid>
 </Window>

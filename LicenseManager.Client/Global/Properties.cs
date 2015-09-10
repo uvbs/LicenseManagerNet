@@ -1,4 +1,5 @@
-﻿using System;
+﻿using LicenseManager.Client.Dtos;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -12,5 +13,7 @@ namespace LicenseManager.Client.Global
         public static readonly string DevUrl = "http://localhost:2453/";
         public static readonly string DevUrlSsl = "https://localhost:44300/";
         public static readonly string LiveUrl = "https://lm.twerner.info";
+
+        public static TokenModel AuthenticationToken;
     }
 }

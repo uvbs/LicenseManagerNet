@@ -21,6 +21,17 @@ namespace LicenseManager.Client.WebApiClient
             return softwares;
         }
 
+        public async Task<SoftwareDetailDto> GetSoftware(int id)
+        {
+            if (!CheckAuthorization())
+            {
+                throw new NotImplementedException();
+            }
+            HttpResponseMessage response = await _client.GetAsync("api/Softwares/" + id);
+            SoftwareDetailDto software = await response.Content.ReadAsAsync<SoftwareDetailDto>();
+            return software;
+        }
+
         public void Dispose()
         {
             _client.Dispose();
