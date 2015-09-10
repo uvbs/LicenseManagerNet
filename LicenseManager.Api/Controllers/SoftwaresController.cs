@@ -13,6 +13,7 @@ using LicenseManager.Api.ViewModels;
 
 namespace LicenseManager.Api.Controllers
 {
+    [Authorize]
     [RoutePrefix("api/Softwares")]
     public class SoftwaresController : ApiController
     {
@@ -28,6 +29,7 @@ namespace LicenseManager.Api.Controllers
 
         // GET api/Softwares
         [Route("")]
+        [AllowAnonymous]
         public IQueryable<SoftwareViewModel> GetSoftwares()
         {
             var softwares = from s in _db.Softwares
@@ -43,6 +45,7 @@ namespace LicenseManager.Api.Controllers
 
         // GET api/Manufacturers/{manufacturerId}/Softwares
         [Route("~/api/Manufacturers/{manufacturerId}/Softwares")]
+        [AllowAnonymous]
         public IQueryable<SoftwareViewModel> GetSoftwaresByManufacturer(int manufacturerId)
         {
             var softwares = from s in _db.Softwares

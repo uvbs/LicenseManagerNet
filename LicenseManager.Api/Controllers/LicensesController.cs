@@ -12,6 +12,7 @@ using System.Web.Http.Description;
 
 namespace LicenseManager.Api.Controllers
 {
+    [Authorize]
     [RoutePrefix("api/Licenses")]
     public class LicensesController : ApiController
     {

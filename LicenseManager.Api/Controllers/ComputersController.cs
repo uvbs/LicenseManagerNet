@@ -10,6 +10,7 @@ using System.Web.Http.Description;
 
 namespace LicenseManager.Api.Controllers
 {
+    [Authorize]
     [RoutePrefix("api/Computers")]
     public class ComputersController : ApiController
     {

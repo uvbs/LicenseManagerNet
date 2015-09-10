@@ -14,6 +14,7 @@ using LicenseManager.Api.ViewModels;
 
 namespace LicenseManager.Api.Controllers
 {
+    [Authorize]
     public class ManufacturersController : ApiController
     {
         private ILicenseManagerContext _db = new LicenseManagerContext();
@@ -26,6 +27,7 @@ namespace LicenseManager.Api.Controllers
         }
 
         // GET: api/Manufacturers
+        [AllowAnonymous]
         public IQueryable<ManufacturerViewModel> GetManufacturers()
         {
             var manufacturers = from m in _db.Manufacturers
@@ -39,6 +41,7 @@ namespace LicenseManager.Api.Controllers
 
         // GET: api/Manufacturers/5
         [ResponseType(typeof(ManufacturerDetailViewModel))]
+        [AllowAnonymous]
         public IHttpActionResult GetManufacturer(int id)
         {
             var item = _db.Manufacturers.Find(id);

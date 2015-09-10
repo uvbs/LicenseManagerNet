@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LicenseManager.Api.Tests", 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LicenseManager.Shared", "LicenseManager.Shared\LicenseManager.Shared.csproj", "{89EC132F-06D5-4D2F-84D9-AEC949F82139}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LicenseManager.TestClient", "LicenseManager.TestClient\LicenseManager.TestClient.csproj", "{9E14AA41-C089-4C4A-8A9D-9D95BCF85B4D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -25,6 +27,10 @@ Global
 		{89EC132F-06D5-4D2F-84D9-AEC949F82139}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{89EC132F-06D5-4D2F-84D9-AEC949F82139}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{89EC132F-06D5-4D2F-84D9-AEC949F82139}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9E14AA41-C089-4C4A-8A9D-9D95BCF85B4D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9E14AA41-C089-4C4A-8A9D-9D95BCF85B4D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9E14AA41-C089-4C4A-8A9D-9D95BCF85B4D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9E14AA41-C089-4C4A-8A9D-9D95BCF85B4D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
