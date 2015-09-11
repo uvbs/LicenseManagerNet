@@ -51,6 +51,8 @@ namespace LicenseManager.Client
         private async void RefreshData()
         {
             SoftwareDetailGrid.Visibility = System.Windows.Visibility.Hidden;
+            btnDeleteSoftware.IsEnabled = false;
+            btnNewLicense.IsEnabled = false;
             await LoadContent();
             if (Global.Content.Softwares.Count > 0)
             {
@@ -120,6 +122,7 @@ namespace LicenseManager.Client
             txtDescription.Text = software.Description;
             DataGrid1.ItemsSource = software.Licenses;
             btnNewLicense.IsEnabled = true;
+            btnDeleteSoftware.IsEnabled = true;
         }
 
         private void btnNewSoftware_Click(object sender, RoutedEventArgs e)
@@ -137,6 +140,28 @@ namespace LicenseManager.Client
             dialog.ShowDialog();
             Thread.Sleep(2000);
             ShowSoftwareDetails(sw);
+        }
+
+        private async void btnDeleteSoftware_Click(object sender, RoutedEventArgs e)
+        {
+            MessageBoxResult result = MessageBox.Show("Do you really want to delete this software?", "Are you sure?", MessageBoxButton.YesNo);
+            if (result == MessageBoxResult.No)
+            {
+                return;
+            }
+            bool success = false;
+            using (var client = new SoftwaresClient(Global.Properties.BaseUrl))
+            {
+                // TODO get software id from anywhere else
+                success = await client.DeleteSoftware(((SoftwareDto)lst1.SelectedItem).Id);
+            }
+
+            if (!success)
+            {
+                return;
+            }
+            Thread.Sleep(1000);
+            RefreshData();
         }
     }
 }

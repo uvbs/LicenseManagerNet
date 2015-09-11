@@ -176,6 +176,7 @@ namespace LicenseManager.Api.Controllers
 
         // DELETE: api/Softwares/5
         [ResponseType(typeof(Software))]
+        [Route("{id:int}")]
         public IHttpActionResult DeleteSoftware(int id)
         {
             Software software = _db.Softwares.Find(id);
@@ -183,6 +184,8 @@ namespace LicenseManager.Api.Controllers
             {
                 return NotFound();
             }
+
+            _db.Licenses.RemoveRange(_db.Licenses.Where(l => l.SoftwareId == id));
 
             _db.Softwares.Remove(software);
             _db.SaveChanges();

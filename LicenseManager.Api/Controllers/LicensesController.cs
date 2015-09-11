@@ -131,6 +131,7 @@ namespace LicenseManager.Api.Controllers
 
         // DELETE: api/Licenses/5
         [ResponseType(typeof(License))]
+        [Route("{id:int}")]
         public IHttpActionResult DeleteLicense(int id)
         {
             License license = _db.Licenses.Find(id);

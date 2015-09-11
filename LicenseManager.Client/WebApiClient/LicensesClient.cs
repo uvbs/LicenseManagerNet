@@ -30,6 +30,23 @@ namespace LicenseManager.Client.WebApiClient
             return true;
         }
 
+        public async Task<bool> PutLicense(int id, LicenseDetailDto license)
+        {
+            throw new NotImplementedException();
+        }
+
+        public async Task<bool> DeleteLicense(int id)
+        {
+            HttpResponseMessage response = await _client.DeleteAsync("api/licenses/" + id);
+            if (!response.IsSuccessStatusCode)
+            {
+                string responseMessage = await response.Content.ReadAsStringAsync();
+                _logger.Error(responseMessage);
+                return false;
+            }
+            return true;
+        }
+
 
         public void Dispose()
         {

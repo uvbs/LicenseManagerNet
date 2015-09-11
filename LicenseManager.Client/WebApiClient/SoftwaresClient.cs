@@ -47,6 +47,18 @@ namespace LicenseManager.Client.WebApiClient
             return true;
         }
 
+        public async Task<bool> DeleteSoftware(int id)
+        {
+            HttpResponseMessage response = await _client.DeleteAsync("api/Softwares/" + id);
+            if (!response.IsSuccessStatusCode)
+            {
+                string responseMessage = await response.Content.ReadAsStringAsync();
+                _logger.Error(responseMessage);
+                return false;
+            }
+            return true;
+        }
+
         public void Dispose()
         {
             _client.Dispose();
