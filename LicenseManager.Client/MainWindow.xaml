@@ -13,15 +13,24 @@
         </Grid.ColumnDefinitions>
         <Menu Grid.Column="0" HorizontalAlignment="Left" Height="Auto" Margin="0,0,0,0" Grid.Row="0" VerticalAlignment="Top" Width="Auto" Grid.ColumnSpan="2">
             <!--TODO drop down "User"-->
-            <MenuItem x:Name="menuUser" Header="User"  Click="menuUser_Click">
-                <MenuItem Name="menuUserLogin" Header="Login" />
+            <MenuItem x:Name="menuUser" Header="User">
+                <MenuItem Name="menuUserLogin" Header="Login" Click="menuUserLogin_Click" />
                 <MenuItem Name="menuUserLogout" Header="Logout" IsEnabled="False" />
                 <MenuItem Name="menuUserRegister" Header="Register" />
             </MenuItem>
+            <MenuItem Header="Computer" Name="menuComputer" IsEnabled="False">
+                <MenuItem Header="Show Computers" Name="menuComputersShow" />
+                <!--TODO-->
+            </MenuItem>
+            <MenuItem Header="Sofware" Name="menuSoftware">
+                <MenuItem Header="New Software" Name="menuSoftwareNew" Click="btnNewSoftware_Click"/>
+                <MenuItem Header="Delete Software" Name="menuSoftwareDelete" Click="btnDeleteSoftware_Click" IsEnabled="False" />
+                <MenuItem Header="New License" Name="menuSoftwareNewLicense" Click="btnNewLicense_Click" IsEnabled="False" />
+             </MenuItem>
             
-                <Button Content="New Software" Name="btnNewSoftware" Click="btnNewSoftware_Click" />
-                <Button Content="Delete Software" Name="btnDeleteSoftware" Click="btnDeleteSoftware_Click" IsEnabled="False"/>
-                <Button Content="New License" Name="btnNewLicense" Click="btnNewLicense_Click" IsEnabled="False" />
+                <!--<Button Content="New Software" Name="btnNewSoftware" Click="btnNewSoftware_Click" />-->
+                <!--<Button Content="Delete Software" Name="btnDeleteSoftware" Click="btnDeleteSoftware_Click" IsEnabled="False"/>
+                <Button Content="New License" Name="btnNewLicense" Click="btnNewLicense_Click" IsEnabled="False" />-->
         </Menu>
 
         <ListBox Name="lst1" HorizontalAlignment="Left" Height="Auto" Margin="0,0,0,0" VerticalAlignment="Top" Grid.Row="1" Grid.Column="0" SelectionChanged="lst1_SelectionChanged" />

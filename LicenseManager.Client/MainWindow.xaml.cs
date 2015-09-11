@@ -51,8 +51,8 @@ namespace LicenseManager.Client
         private async void RefreshData()
         {
             SoftwareDetailGrid.Visibility = System.Windows.Visibility.Hidden;
-            btnDeleteSoftware.IsEnabled = false;
-            btnNewLicense.IsEnabled = false;
+            menuSoftwareDelete.IsEnabled = false;
+            menuSoftwareNewLicense.IsEnabled = false;
             await LoadContent();
             if (Global.Content.Softwares.Count > 0)
             {
@@ -133,8 +133,8 @@ namespace LicenseManager.Client
             txtGenre.Text = software.GenreName;
             txtDescription.Text = software.Description;
             DataGrid1.ItemsSource = software.Licenses;
-            btnNewLicense.IsEnabled = true;
-            btnDeleteSoftware.IsEnabled = true;
+            menuSoftwareNewLicense.IsEnabled = true;
+            menuSoftwareDelete.IsEnabled = true;
         }
 
         private void btnNewSoftware_Click(object sender, RoutedEventArgs e)
@@ -179,7 +179,7 @@ namespace LicenseManager.Client
             RefreshData();
         }
 
-        private void menuUser_Click(object sender, RoutedEventArgs e)
+        private void menuUserLogin_Click(object sender, RoutedEventArgs e)
         {
             Login();
         }

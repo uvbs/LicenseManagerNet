@@ -31,7 +31,7 @@
         <TextBox Grid.Row="3" Grid.Column="2" Name="txtUsername" />
         <TextBox Grid.Row="4" Grid.Column="2" Name="txtPassword" />
         
-        <Button Name="btnLogin" Grid.Row="6" Grid.Column="1" Click="btnLogin_Click" />
+        <Button Name="btnLogin" Grid.Row="6" Grid.Column="1" Click="btnLogin_Click" Content="Login" />
         
     </Grid>
 </Window>
