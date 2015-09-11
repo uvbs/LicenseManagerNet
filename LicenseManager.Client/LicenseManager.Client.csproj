@@ -72,6 +72,9 @@
     <Compile Include="Dialogs\NewSoftwareDialog.xaml.cs">
       <DependentUpon>NewSoftwareDialog.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Dialogs\UserLoginDialog.xaml.cs">
+      <DependentUpon>UserLoginDialog.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Dtos\LicenseDetailDto.cs" />
     <Compile Include="Dtos\LicenseDto.cs" />
     <Compile Include="Dtos\ManufacturerDetailDto.cs" />
@@ -80,6 +83,7 @@
     <Compile Include="Dtos\SoftwareDto.cs" />
     <Compile Include="Dtos\TokenModel.cs" />
     <Compile Include="Enums\Genre.cs" />
+    <Compile Include="Exceptions\NotLoggedInException.cs" />
     <Compile Include="Global\Content.cs" />
     <Compile Include="Global\Properties.cs" />
     <Compile Include="WebApiClient\AbstractWebApiClient.cs" />
@@ -92,6 +96,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Dialogs\NewSoftwareDialog.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Dialogs\UserLoginDialog.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

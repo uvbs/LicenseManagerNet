@@ -42,9 +42,9 @@ namespace LicenseManager.Client
                 .ServerCertificateValidationCallback +=
                 (sender, cert, chain, sslPolicyErrors) => true;
             
-            Global.Properties.BaseUrl = Global.Properties.DevUrlSsl;
-            await Login();
-
+            Global.Properties.BaseUrl = Global.Properties.LiveUrl;
+            //await Login();
+            Global.Properties.AuthenticationToken = null;
             RefreshData();
         }
 
@@ -62,11 +62,16 @@ namespace LicenseManager.Client
                     lst1.Items.Add(item);
                 }
             }
+            if(Global.Properties.AuthenticationToken != null)
+            {
+                menuUserLogin.IsEnabled = false;
+                menuUserLogout.IsEnabled = true;
+            }
         }
 
 
-        //TODO Testcode
-        private async Task Login()
+        //TODO Remove auto login
+        private async Task TestLogin()
         {
             using (var client = new AccountClient())
             {
@@ -104,6 +109,13 @@ namespace LicenseManager.Client
 
         private async void ShowSoftwareDetails(SoftwareDto sw)
         {
+            if (!UserLoggedIn())
+            {
+                if (!Login())
+                {
+                    return;
+                }
+            }
             SoftwareDetailDto software = null;
             using (var client = new SoftwaresClient(Global.Properties.BaseUrl))
             {
@@ -144,7 +156,10 @@ namespace LicenseManager.Client
 
         private async void btnDeleteSoftware_Click(object sender, RoutedEventArgs e)
         {
-            MessageBoxResult result = MessageBox.Show("Do you really want to delete this software?", "Are you sure?", MessageBoxButton.YesNo);
+            MessageBoxResult result = MessageBox.Show(
+                "Do you really want to delete this software? \n All licenses of this software will deleted too.",
+                "Are you sure?", MessageBoxButton.YesNo
+                );
             if (result == MessageBoxResult.No)
             {
                 return;
@@ -162,6 +177,25 @@ namespace LicenseManager.Client
             }
             Thread.Sleep(1000);
             RefreshData();
+        }
+
+        private void menuUser_Click(object sender, RoutedEventArgs e)
+        {
+            Login();
+        }
+
+        private bool Login()
+        {
+            UserLoginDialog dialog = new UserLoginDialog();
+            dialog.Show();
+            Thread.Sleep(1000);
+            if (UserLoggedIn()) return true;
+            return false;
+        }
+
+        private bool UserLoggedIn()
+        {
+            return (Global.Properties.AuthenticationToken != null);
         }
     }
 }

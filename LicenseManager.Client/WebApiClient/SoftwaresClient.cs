@@ -1,4 +1,5 @@
 ﻿using LicenseManager.Client.Dtos;
+using LicenseManager.Client.Exceptions;
 using NLog;
 using System;
 using System.Collections.Generic;
@@ -28,7 +29,7 @@ namespace LicenseManager.Client.WebApiClient
         {
             if (!CheckAuthorization())
             {
-                throw new NotImplementedException();
+                throw new NotLoggedInException();
             }
             HttpResponseMessage response = await _client.GetAsync("api/Softwares/" + id);
             SoftwareDetailDto software = await response.Content.ReadAsAsync<SoftwareDetailDto>();
