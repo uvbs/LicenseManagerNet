@@ -1,4 +1,6 @@
-﻿using LicenseManager.Client.Dtos;
+﻿using LicenseManager.Client.Dialogs;
+using LicenseManager.Client.Dtos;
+using LicenseManager.Client.Enums;
 using LicenseManager.Client.WebApiClient;
 using NLog;
 using System;
@@ -42,15 +44,14 @@ namespace LicenseManager.Client
             
             Global.Properties.BaseUrl = Global.Properties.DevUrlSsl;
             await Login();
-            await LoadContent();
-
-            lst1.Items.Add("Test");
 
             RefreshData();
         }
 
-        private void RefreshData()
+        private async void RefreshData()
         {
+            SoftwareDetailGrid.Visibility = System.Windows.Visibility.Hidden;
+            await LoadContent();
             if (Global.Content.Softwares.Count > 0)
             {
                 lst1.Items.Clear();
@@ -91,23 +92,51 @@ namespace LicenseManager.Client
             }
         }
 
-        private async void lst1_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void lst1_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             if (lst1.SelectedItem != null)
             {
-                SoftwareDetailDto software = null;
-                using(var client = new SoftwaresClient(Global.Properties.BaseUrl))
-                {
-                    software = await client.GetSoftware(((SoftwareDto)lst1.SelectedItem).Id);
-                }
-                SoftwareDetailGrid.Visibility = System.Windows.Visibility.Visible;
-                lblTitle.Content = lst1.SelectedItem.ToString();
-                txtManufacturer.Text = software.ManufacturerName;
-                txtName.Text = software.Name;
-                txtGenre.Text = software.GenreName;
-                txtDescription.Text = software.Description;
-                DataGrid1.ItemsSource = software.Licenses;
+                ShowSoftwareDetails((SoftwareDto)lst1.SelectedItem);
             }
+        }
+
+        private async void ShowSoftwareDetails(SoftwareDto sw)
+        {
+            SoftwareDetailDto software = null;
+            using (var client = new SoftwaresClient(Global.Properties.BaseUrl))
+            {
+                software = await client.GetSoftware(sw.Id);
+            }
+            if (software == null)
+            {
+                return;
+            }
+
+            SoftwareDetailGrid.Visibility = System.Windows.Visibility.Visible;
+            lblTitle.Content = sw.ToString();
+            txtManufacturer.Text = software.ManufacturerName;
+            txtName.Text = software.Name;
+            txtGenre.Text = software.GenreName;
+            txtDescription.Text = software.Description;
+            DataGrid1.ItemsSource = software.Licenses;
+            btnNewLicense.IsEnabled = true;
+        }
+
+        private void btnNewSoftware_Click(object sender, RoutedEventArgs e)
+        {
+            NewSoftwareDialog dialog = new NewSoftwareDialog();
+            dialog.ShowDialog();
+            Thread.Sleep(2000);
+            RefreshData();
+        }
+
+        private void btnNewLicense_Click(object sender, RoutedEventArgs e)
+        {
+            SoftwareDto sw = (SoftwareDto)lst1.SelectedItem;
+            NewLicenseDialog dialog = new NewLicenseDialog(sw.Id);
+            dialog.ShowDialog();
+            Thread.Sleep(2000);
+            ShowSoftwareDetails(sw);
         }
     }
 }

@@ -66,18 +66,35 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Dialogs\NewLicenseDialog.xaml.cs">
+      <DependentUpon>NewLicenseDialog.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\NewSoftwareDialog.xaml.cs">
+      <DependentUpon>NewSoftwareDialog.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Dtos\LicenseDetailDto.cs" />
     <Compile Include="Dtos\LicenseDto.cs" />
     <Compile Include="Dtos\ManufacturerDetailDto.cs" />
     <Compile Include="Dtos\ManufacturerDto.cs" />
     <Compile Include="Dtos\SoftwareDetailDto.cs" />
     <Compile Include="Dtos\SoftwareDto.cs" />
     <Compile Include="Dtos\TokenModel.cs" />
+    <Compile Include="Enums\Genre.cs" />
     <Compile Include="Global\Content.cs" />
     <Compile Include="Global\Properties.cs" />
     <Compile Include="WebApiClient\AbstractWebApiClient.cs" />
     <Compile Include="WebApiClient\AccountClient.cs" />
+    <Compile Include="WebApiClient\LicensesClient.cs" />
     <Compile Include="WebApiClient\ManufacturersClient.cs" />
     <Compile Include="WebApiClient\SoftwaresClient.cs" />
+    <Page Include="Dialogs\NewLicenseDialog.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Dialogs\NewSoftwareDialog.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -125,9 +142,7 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Dialogs\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

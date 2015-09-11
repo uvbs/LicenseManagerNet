@@ -170,7 +170,8 @@ namespace LicenseManager.Api.Controllers
             _db.SaveChanges();
 
             //TODO checked created at route
-            return CreatedAtRoute("DefaultApi", new {id = software.SoftwareId}, software);
+            //return CreatedAtRoute("DefaultApi", new {id = software.SoftwareId}, software);
+            return Created("api/softwares/" + new { id = software.SoftwareId }, software);
         }
 
         // DELETE: api/Softwares/5
