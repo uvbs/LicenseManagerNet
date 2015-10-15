@@ -1,6 +1,8 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2012
+# Visual Studio 14
+VisualStudioVersion = 14.0.23107.0
+MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LicenseManager.Api", "LicenseManager.Api\LicenseManager.Api.csproj", "{D269C460-9D5C-4869-8C3A-5CA5221D6944}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LicenseManager.Api.Tests", "LicenseManager.Api.Tests\LicenseManager.Api.Tests.csproj", "{256CC242-9936-4C6D-9E57-B0F0977F6443}"
@@ -10,6 +12,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LicenseManager.TestClient", "LicenseManager.TestClient\LicenseManager.TestClient.csproj", "{9E14AA41-C089-4C4A-8A9D-9D95BCF85B4D}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LicenseManager.Client", "LicenseManager.Client\LicenseManager.Client.csproj", "{F2B72D3E-5DEE-47AB-85DD-C7A026723125}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LicenseManager.Web", "LicenseManager.Web\LicenseManager.Web.csproj", "{9DE7820A-34C9-4AFE-9209-BD0E783F6C7E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -37,6 +41,10 @@ Global
 		{F2B72D3E-5DEE-47AB-85DD-C7A026723125}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F2B72D3E-5DEE-47AB-85DD-C7A026723125}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F2B72D3E-5DEE-47AB-85DD-C7A026723125}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9DE7820A-34C9-4AFE-9209-BD0E783F6C7E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9DE7820A-34C9-4AFE-9209-BD0E783F6C7E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9DE7820A-34C9-4AFE-9209-BD0E783F6C7E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9DE7820A-34C9-4AFE-9209-BD0E783F6C7E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
