@@ -4,155 +4,154 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="LicenseManagerModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
-        <EntityContainer Name="LicenseManagerModelStoreContainer">
-          <EntitySet Name="Computer" EntityType="LicenseManagerModel.Store.Computer" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="Genre" EntityType="LicenseManagerModel.Store.Genre" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="License" EntityType="LicenseManagerModel.Store.License" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="Manufacturer" EntityType="LicenseManagerModel.Store.Manufacturer" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="Software" EntityType="LicenseManagerModel.Store.Software" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="UsedOn" EntityType="LicenseManagerModel.Store.UsedOn" store:Type="Tables" Schema="dbo" />
-          <AssociationSet Name="FK_License_Software" Association="LicenseManagerModel.Store.FK_License_Software">
-            <End Role="Software" EntitySet="Software" />
-            <End Role="License" EntitySet="License" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Software_Genre" Association="LicenseManagerModel.Store.FK_Software_Genre">
-            <End Role="Genre" EntitySet="Genre" />
-            <End Role="Software" EntitySet="Software" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Software_Manufacturer" Association="LicenseManagerModel.Store.FK_Software_Manufacturer">
-            <End Role="Manufacturer" EntitySet="Manufacturer" />
-            <End Role="Software" EntitySet="Software" />
-          </AssociationSet>
-          <AssociationSet Name="FK_UsedOn_Computer" Association="LicenseManagerModel.Store.FK_UsedOn_Computer">
-            <End Role="Computer" EntitySet="Computer" />
-            <End Role="UsedOn" EntitySet="UsedOn" />
-          </AssociationSet>
-          <AssociationSet Name="FK_UsedOn_License" Association="LicenseManagerModel.Store.FK_UsedOn_License">
-            <End Role="License" EntitySet="License" />
-            <End Role="UsedOn" EntitySet="UsedOn" />
-          </AssociationSet>
-        </EntityContainer>
-        <EntityType Name="Computer">
+    <Schema Namespace="LicenseManagerModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Computers">
           <Key>
             <PropertyRef Name="ComputerId" />
           </Key>
-          <Property Name="ComputerId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
-          <Property Name="Hostname" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="ComputerId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Hostname" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="IpAddress" Type="nvarchar" MaxLength="50" />
           <Property Name="Location" Type="nvarchar" MaxLength="50" />
           <Property Name="UserId" Type="nvarchar" MaxLength="128" />
         </EntityType>
-        <EntityType Name="Genre">
+        <EntityType Name="Genres">
           <Key>
             <PropertyRef Name="GenreId" />
           </Key>
-          <Property Name="GenreId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
-          <Property Name="Name" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="GenreId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="CreatedAt" Type="datetime" />
         </EntityType>
-        <EntityType Name="License">
+        <EntityType Name="Licenses">
           <Key>
             <PropertyRef Name="LicenseId" />
           </Key>
-          <Property Name="LicenseId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="LicenseId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="SoftwareId" Type="int" Nullable="false" />
-          <Property Name="Edition" Type="nvarchar" Nullable="false" MaxLength="100" />
-          <Property Name="ActivationKey" Type="nvarchar" Nullable="false" MaxLength="100" />
+          <Property Name="Edition" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="ActivationKey" Type="nvarchar" MaxLength="100" Nullable="false" />
           <Property Name="VolumeLicense" Type="tinyint" />
           <Property Name="UserId" Type="nvarchar" MaxLength="128" />
           <Property Name="CreationDate" Type="datetime" />
           <Property Name="ModificationDate" Type="datetime" />
         </EntityType>
-        <EntityType Name="Manufacturer">
+        <EntityType Name="Manufacturers">
           <Key>
             <PropertyRef Name="ManufacturerId" />
           </Key>
-          <Property Name="ManufacturerId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
-          <Property Name="Name" Type="nvarchar" Nullable="false" MaxLength="100" />
+          <Property Name="ManufacturerId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="100" Nullable="false" />
           <Property Name="Homepage" Type="nvarchar" MaxLength="500" />
         </EntityType>
-        <EntityType Name="Software">
+        <EntityType Name="Softwares">
           <Key>
             <PropertyRef Name="SoftwareId" />
           </Key>
-          <Property Name="SoftwareId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="SoftwareId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="ManufacturerId" Type="int" Nullable="false" />
           <Property Name="GenreId" Type="int" Nullable="false" />
-          <Property Name="Name" Type="nvarchar" Nullable="false" MaxLength="100" />
+          <Property Name="Name" Type="nvarchar" MaxLength="100" Nullable="false" />
           <Property Name="Description" Type="nvarchar" MaxLength="1000" />
         </EntityType>
-        <EntityType Name="UsedOn">
+        <EntityType Name="UsedOns">
           <Key>
             <PropertyRef Name="UsedOnId" />
           </Key>
-          <Property Name="UsedOnId" Type="nvarchar" Nullable="false" MaxLength="128" />
+          <Property Name="UsedOnId" Type="nvarchar" MaxLength="128" Nullable="false" />
           <Property Name="ComputerId" Type="int" Nullable="false" />
           <Property Name="LicenseId" Type="int" Nullable="false" />
           <Property Name="InstallationDate" Type="datetime" Nullable="false" />
         </EntityType>
         <Association Name="FK_License_Software">
-          <End Role="Software" Type="LicenseManagerModel.Store.Software" Multiplicity="1" />
-          <End Role="License" Type="LicenseManagerModel.Store.License" Multiplicity="*" />
+          <End Role="Softwares" Type="Self.Softwares" Multiplicity="1" />
+          <End Role="Licenses" Type="Self.Licenses" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Software">
+            <Principal Role="Softwares">
               <PropertyRef Name="SoftwareId" />
             </Principal>
-            <Dependent Role="License">
+            <Dependent Role="Licenses">
               <PropertyRef Name="SoftwareId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Software_Genre">
-          <End Role="Genre" Type="LicenseManagerModel.Store.Genre" Multiplicity="1" />
-          <End Role="Software" Type="LicenseManagerModel.Store.Software" Multiplicity="*" />
+          <End Role="Genres" Type="Self.Genres" Multiplicity="1" />
+          <End Role="Softwares" Type="Self.Softwares" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Genre">
+            <Principal Role="Genres">
               <PropertyRef Name="GenreId" />
             </Principal>
-            <Dependent Role="Software">
+            <Dependent Role="Softwares">
               <PropertyRef Name="GenreId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Software_Manufacturer">
-          <End Role="Manufacturer" Type="LicenseManagerModel.Store.Manufacturer" Multiplicity="1" />
-          <End Role="Software" Type="LicenseManagerModel.Store.Software" Multiplicity="*" />
+          <End Role="Manufacturers" Type="Self.Manufacturers" Multiplicity="1" />
+          <End Role="Softwares" Type="Self.Softwares" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Manufacturer">
+            <Principal Role="Manufacturers">
               <PropertyRef Name="ManufacturerId" />
             </Principal>
-            <Dependent Role="Software">
+            <Dependent Role="Softwares">
               <PropertyRef Name="ManufacturerId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_UsedOn_Computer">
-          <End Role="Computer" Type="LicenseManagerModel.Store.Computer" Multiplicity="1" />
-          <End Role="UsedOn" Type="LicenseManagerModel.Store.UsedOn" Multiplicity="*" />
+          <End Role="Computers" Type="Self.Computers" Multiplicity="1" />
+          <End Role="UsedOns" Type="Self.UsedOns" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Computer">
+            <Principal Role="Computers">
               <PropertyRef Name="ComputerId" />
             </Principal>
-            <Dependent Role="UsedOn">
+            <Dependent Role="UsedOns">
               <PropertyRef Name="ComputerId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_UsedOn_License">
-          <End Role="License" Type="LicenseManagerModel.Store.License" Multiplicity="1" />
-          <End Role="UsedOn" Type="LicenseManagerModel.Store.UsedOn" Multiplicity="*" />
+          <End Role="Licenses" Type="Self.Licenses" Multiplicity="1" />
+          <End Role="UsedOns" Type="Self.UsedOns" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="License">
+            <Principal Role="Licenses">
               <PropertyRef Name="LicenseId" />
             </Principal>
-            <Dependent Role="UsedOn">
+            <Dependent Role="UsedOns">
               <PropertyRef Name="LicenseId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-      </Schema>
-    </edmx:StorageModels>
+        <EntityContainer Name="LicenseManagerModelStoreContainer">
+          <EntitySet Name="Computers" EntityType="Self.Computers" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Genres" EntityType="Self.Genres" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Licenses" EntityType="Self.Licenses" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Manufacturers" EntityType="Self.Manufacturers" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Softwares" EntityType="Self.Softwares" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UsedOns" EntityType="Self.UsedOns" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_License_Software" Association="Self.FK_License_Software">
+            <End Role="Softwares" EntitySet="Softwares" />
+            <End Role="Licenses" EntitySet="Licenses" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Software_Genre" Association="Self.FK_Software_Genre">
+            <End Role="Genres" EntitySet="Genres" />
+            <End Role="Softwares" EntitySet="Softwares" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Software_Manufacturer" Association="Self.FK_Software_Manufacturer">
+            <End Role="Manufacturers" EntitySet="Manufacturers" />
+            <End Role="Softwares" EntitySet="Softwares" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UsedOn_Computer" Association="Self.FK_UsedOn_Computer">
+            <End Role="Computers" EntitySet="Computers" />
+            <End Role="UsedOns" EntitySet="UsedOns" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UsedOn_License" Association="Self.FK_UsedOn_License">
+            <End Role="Licenses" EntitySet="Licenses" />
+            <End Role="UsedOns" EntitySet="UsedOns" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="LicenseManagerModel" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -188,19 +187,19 @@
           <Key>
             <PropertyRef Name="ComputerId" />
           </Key>
-          <Property Name="ComputerId" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
-          <Property Name="Hostname" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
-          <Property Name="IpAddress" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
-          <Property Name="Location" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
-          <Property Name="UserId" Type="String" MaxLength="128" Unicode="true" FixedLength="false" />
+          <Property Name="ComputerId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Hostname" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="IpAddress" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Location" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="UserId" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="UsedOns" Relationship="LicenseManagerModel.FK_UsedOn_Computer" FromRole="Computer" ToRole="UsedOn" />
         </EntityType>
         <EntityType Name="Genre">
           <Key>
             <PropertyRef Name="GenreId" />
           </Key>
-          <Property Name="GenreId" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
-          <Property Name="Name" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="GenreId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="CreatedAt" Type="DateTime" Precision="3" />
           <NavigationProperty Name="Softwares" Relationship="LicenseManagerModel.FK_Software_Genre" FromRole="Genre" ToRole="Software" />
         </EntityType>
@@ -208,12 +207,12 @@
           <Key>
             <PropertyRef Name="LicenseId" />
           </Key>
-          <Property Name="LicenseId" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="LicenseId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="SoftwareId" Type="Int32" Nullable="false" />
-          <Property Name="Edition" Type="String" Nullable="false" MaxLength="100" Unicode="true" FixedLength="false" />
-          <Property Name="ActivationKey" Type="String" Nullable="false" MaxLength="100" Unicode="true" FixedLength="false" />
+          <Property Name="Edition" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="ActivationKey" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="VolumeLicense" Type="Byte" />
-          <Property Name="UserId" Type="String" MaxLength="128" Unicode="true" FixedLength="false" />
+          <Property Name="UserId" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
           <Property Name="CreationDate" Type="DateTime" Precision="3" />
           <Property Name="ModificationDate" Type="DateTime" Precision="3" />
           <NavigationProperty Name="Software" Relationship="LicenseManagerModel.FK_License_Software" FromRole="License" ToRole="Software" />
@@ -223,20 +222,20 @@
           <Key>
             <PropertyRef Name="ManufacturerId" />
           </Key>
-          <Property Name="ManufacturerId" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
-          <Property Name="Name" Type="String" Nullable="false" MaxLength="100" Unicode="true" FixedLength="false" />
-          <Property Name="Homepage" Type="String" MaxLength="500" Unicode="true" FixedLength="false" />
+          <Property Name="ManufacturerId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Homepage" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Softwares" Relationship="LicenseManagerModel.FK_Software_Manufacturer" FromRole="Manufacturer" ToRole="Software" />
         </EntityType>
         <EntityType Name="Software">
           <Key>
             <PropertyRef Name="SoftwareId" />
           </Key>
-          <Property Name="SoftwareId" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="SoftwareId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="ManufacturerId" Type="Int32" Nullable="false" />
           <Property Name="GenreId" Type="Int32" Nullable="false" />
-          <Property Name="Name" Type="String" Nullable="false" MaxLength="100" Unicode="true" FixedLength="false" />
-          <Property Name="Description" Type="String" MaxLength="1000" Unicode="true" FixedLength="false" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Description" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Genre" Relationship="LicenseManagerModel.FK_Software_Genre" FromRole="Software" ToRole="Genre" />
           <NavigationProperty Name="Licenses" Relationship="LicenseManagerModel.FK_License_Software" FromRole="Software" ToRole="License" />
           <NavigationProperty Name="Manufacturer" Relationship="LicenseManagerModel.FK_Software_Manufacturer" FromRole="Software" ToRole="Manufacturer" />
@@ -245,7 +244,7 @@
           <Key>
             <PropertyRef Name="UsedOnId" />
           </Key>
-          <Property Name="UsedOnId" Type="String" Nullable="false" MaxLength="128" Unicode="true" FixedLength="false" />
+          <Property Name="UsedOnId" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
           <Property Name="ComputerId" Type="Int32" Nullable="false" />
           <Property Name="LicenseId" Type="Int32" Nullable="false" />
           <Property Name="InstallationDate" Type="DateTime" Nullable="false" Precision="3" />
@@ -253,8 +252,8 @@
           <NavigationProperty Name="License" Relationship="LicenseManagerModel.FK_UsedOn_License" FromRole="UsedOn" ToRole="License" />
         </EntityType>
         <Association Name="FK_UsedOn_Computer">
-          <End Role="Computer" Type="LicenseManagerModel.Computer" Multiplicity="1" />
-          <End Role="UsedOn" Type="LicenseManagerModel.UsedOn" Multiplicity="*" />
+          <End Type="LicenseManagerModel.Computer" Role="Computer" Multiplicity="1" />
+          <End Type="LicenseManagerModel.UsedOn" Role="UsedOn" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Computer">
               <PropertyRef Name="ComputerId" />
@@ -265,8 +264,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Software_Genre">
-          <End Role="Genre" Type="LicenseManagerModel.Genre" Multiplicity="1" />
-          <End Role="Software" Type="LicenseManagerModel.Software" Multiplicity="*" />
+          <End Type="LicenseManagerModel.Genre" Role="Genre" Multiplicity="1" />
+          <End Type="LicenseManagerModel.Software" Role="Software" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Genre">
               <PropertyRef Name="GenreId" />
@@ -277,8 +276,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_License_Software">
-          <End Role="Software" Type="LicenseManagerModel.Software" Multiplicity="1" />
-          <End Role="License" Type="LicenseManagerModel.License" Multiplicity="*" />
+          <End Type="LicenseManagerModel.Software" Role="Software" Multiplicity="1" />
+          <End Type="LicenseManagerModel.License" Role="License" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Software">
               <PropertyRef Name="SoftwareId" />
@@ -289,8 +288,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_UsedOn_License">
-          <End Role="License" Type="LicenseManagerModel.License" Multiplicity="1" />
-          <End Role="UsedOn" Type="LicenseManagerModel.UsedOn" Multiplicity="*" />
+          <End Type="LicenseManagerModel.License" Role="License" Multiplicity="1" />
+          <End Type="LicenseManagerModel.UsedOn" Role="UsedOn" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="License">
               <PropertyRef Name="LicenseId" />
@@ -301,8 +300,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Software_Manufacturer">
-          <End Role="Manufacturer" Type="LicenseManagerModel.Manufacturer" Multiplicity="1" />
-          <End Role="Software" Type="LicenseManagerModel.Software" Multiplicity="*" />
+          <End Type="LicenseManagerModel.Manufacturer" Role="Manufacturer" Multiplicity="1" />
+          <End Type="LicenseManagerModel.Software" Role="Software" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Manufacturer">
               <PropertyRef Name="ManufacturerId" />
@@ -312,7 +311,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-      </Schema>
+        </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
@@ -320,65 +319,65 @@
         <EntityContainerMapping StorageEntityContainer="LicenseManagerModelStoreContainer" CdmEntityContainer="LicenseManagerEntities">
           <EntitySetMapping Name="Computers">
             <EntityTypeMapping TypeName="LicenseManagerModel.Computer">
-              <MappingFragment StoreEntitySet="Computer">
-                <ScalarProperty Name="ComputerId" ColumnName="ComputerId" />
-                <ScalarProperty Name="Hostname" ColumnName="Hostname" />
-                <ScalarProperty Name="IpAddress" ColumnName="IpAddress" />
-                <ScalarProperty Name="Location" ColumnName="Location" />
+              <MappingFragment StoreEntitySet="Computers">
                 <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="Location" ColumnName="Location" />
+                <ScalarProperty Name="IpAddress" ColumnName="IpAddress" />
+                <ScalarProperty Name="Hostname" ColumnName="Hostname" />
+                <ScalarProperty Name="ComputerId" ColumnName="ComputerId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Genres">
             <EntityTypeMapping TypeName="LicenseManagerModel.Genre">
-              <MappingFragment StoreEntitySet="Genre">
-                <ScalarProperty Name="GenreId" ColumnName="GenreId" />
-                <ScalarProperty Name="Name" ColumnName="Name" />
+              <MappingFragment StoreEntitySet="Genres">
                 <ScalarProperty Name="CreatedAt" ColumnName="CreatedAt" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="GenreId" ColumnName="GenreId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Licenses">
             <EntityTypeMapping TypeName="LicenseManagerModel.License">
-              <MappingFragment StoreEntitySet="License">
-                <ScalarProperty Name="LicenseId" ColumnName="LicenseId" />
-                <ScalarProperty Name="SoftwareId" ColumnName="SoftwareId" />
-                <ScalarProperty Name="Edition" ColumnName="Edition" />
-                <ScalarProperty Name="ActivationKey" ColumnName="ActivationKey" />
-                <ScalarProperty Name="VolumeLicense" ColumnName="VolumeLicense" />
-                <ScalarProperty Name="UserId" ColumnName="UserId" />
-                <ScalarProperty Name="CreationDate" ColumnName="CreationDate" />
+              <MappingFragment StoreEntitySet="Licenses">
                 <ScalarProperty Name="ModificationDate" ColumnName="ModificationDate" />
+                <ScalarProperty Name="CreationDate" ColumnName="CreationDate" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="VolumeLicense" ColumnName="VolumeLicense" />
+                <ScalarProperty Name="ActivationKey" ColumnName="ActivationKey" />
+                <ScalarProperty Name="Edition" ColumnName="Edition" />
+                <ScalarProperty Name="SoftwareId" ColumnName="SoftwareId" />
+                <ScalarProperty Name="LicenseId" ColumnName="LicenseId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Manufacturers">
             <EntityTypeMapping TypeName="LicenseManagerModel.Manufacturer">
-              <MappingFragment StoreEntitySet="Manufacturer">
-                <ScalarProperty Name="ManufacturerId" ColumnName="ManufacturerId" />
-                <ScalarProperty Name="Name" ColumnName="Name" />
+              <MappingFragment StoreEntitySet="Manufacturers">
                 <ScalarProperty Name="Homepage" ColumnName="Homepage" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ManufacturerId" ColumnName="ManufacturerId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Softwares">
             <EntityTypeMapping TypeName="LicenseManagerModel.Software">
-              <MappingFragment StoreEntitySet="Software">
-                <ScalarProperty Name="SoftwareId" ColumnName="SoftwareId" />
-                <ScalarProperty Name="ManufacturerId" ColumnName="ManufacturerId" />
-                <ScalarProperty Name="GenreId" ColumnName="GenreId" />
-                <ScalarProperty Name="Name" ColumnName="Name" />
+              <MappingFragment StoreEntitySet="Softwares">
                 <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="GenreId" ColumnName="GenreId" />
+                <ScalarProperty Name="ManufacturerId" ColumnName="ManufacturerId" />
+                <ScalarProperty Name="SoftwareId" ColumnName="SoftwareId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="UsedOns">
             <EntityTypeMapping TypeName="LicenseManagerModel.UsedOn">
-              <MappingFragment StoreEntitySet="UsedOn">
-                <ScalarProperty Name="UsedOnId" ColumnName="UsedOnId" />
-                <ScalarProperty Name="ComputerId" ColumnName="ComputerId" />
-                <ScalarProperty Name="LicenseId" ColumnName="LicenseId" />
+              <MappingFragment StoreEntitySet="UsedOns">
                 <ScalarProperty Name="InstallationDate" ColumnName="InstallationDate" />
+                <ScalarProperty Name="LicenseId" ColumnName="LicenseId" />
+                <ScalarProperty Name="ComputerId" ColumnName="ComputerId" />
+                <ScalarProperty Name="UsedOnId" ColumnName="UsedOnId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -396,9 +395,10 @@
     <Options>
       <DesignerInfoPropertySet>
         <DesignerProperty Name="ValidateOnBuild" Value="true" />
-        <DesignerProperty Name="EnablePluralization" Value="False" />
+        <DesignerProperty Name="EnablePluralization" Value="True" />
         <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
         <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+        <DesignerProperty Name="UseLegacyProvider" Value="False" />
       </DesignerInfoPropertySet>
     </Options>
     <!-- Diagram content (shape and connector positions) -->

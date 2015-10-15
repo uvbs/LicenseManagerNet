@@ -42,7 +42,7 @@ namespace LicenseManager.Client
                 .ServerCertificateValidationCallback +=
                 (sender, cert, chain, sslPolicyErrors) => true;
             
-            Global.Properties.BaseUrl = Global.Properties.LiveUrl;
+            Global.Properties.BaseUrl = Global.Properties.DevUrl;
             //await Login();
             Global.Properties.AuthenticationToken = null;
             RefreshData();
