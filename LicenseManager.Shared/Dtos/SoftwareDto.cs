@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace LicenseManager.Web.Dtos
+namespace LicenseManager.Shared.Dtos
 {
     public class SoftwareDto
     {

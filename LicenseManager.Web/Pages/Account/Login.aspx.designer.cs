@@ -7,63 +7,63 @@
 // </automatisch generiert>
 //------------------------------------------------------------------------------
 
-namespace LicenseManager.Web.Pages {
+namespace LicenseManager.Web.Pages.Account {
     
     
-    public partial class Softwares {
+    public partial class Login {
         
         /// <summary>
-        /// tblSoftwares-Steuerelement
+        /// pageHeader-Steuerelement
         /// </summary>
         /// <remarks>
         /// Automatisch generiertes Feld
         /// Zum Ändern Felddeklaration aus der Designerdatei in eine Code-Behind-Datei verschieben.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Table tblSoftwares;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl pageHeader;
         
         /// <summary>
-        /// thrSoftwares-Steuerelement
+        /// lblEmail-Steuerelement
         /// </summary>
         /// <remarks>
         /// Automatisch generiertes Feld
         /// Zum Ändern Felddeklaration aus der Designerdatei in eine Code-Behind-Datei verschieben.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TableRow thrSoftwares;
+        protected global::System.Web.UI.WebControls.Label lblEmail;
         
         /// <summary>
-        /// thcId-Steuerelement
+        /// tbEmail-Steuerelement
         /// </summary>
         /// <remarks>
         /// Automatisch generiertes Feld
         /// Zum Ändern Felddeklaration aus der Designerdatei in eine Code-Behind-Datei verschieben.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TableHeaderCell thcId;
+        protected global::System.Web.UI.WebControls.TextBox tbEmail;
         
         /// <summary>
-        /// thcManufacturer-Steuerelement
+        /// lblPassword-Steuerelement
         /// </summary>
         /// <remarks>
         /// Automatisch generiertes Feld
         /// Zum Ändern Felddeklaration aus der Designerdatei in eine Code-Behind-Datei verschieben.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TableHeaderCell thcManufacturer;
+        protected global::System.Web.UI.WebControls.Label lblPassword;
         
         /// <summary>
-        /// thcName-Steuerelement
+        /// tbPassword-Steuerelement
         /// </summary>
         /// <remarks>
         /// Automatisch generiertes Feld
         /// Zum Ändern Felddeklaration aus der Designerdatei in eine Code-Behind-Datei verschieben.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TableHeaderCell thcName;
+        protected global::System.Web.UI.WebControls.TextBox tbPassword;
         
         /// <summary>
-        /// thcButtons-Steuerelement
+        /// btnDoLogin-Steuerelement
         /// </summary>
         /// <remarks>
         /// Automatisch generiertes Feld
         /// Zum Ändern Felddeklaration aus der Designerdatei in eine Code-Behind-Datei verschieben.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TableHeaderCell thcButtons;
+        protected global::System.Web.UI.WebControls.Button btnDoLogin;
     }
 }

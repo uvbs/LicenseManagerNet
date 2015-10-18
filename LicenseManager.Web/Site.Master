@@ -7,7 +7,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title><%: Page.Title %> - Eigene ASP.NET-Anwendung</title>
+    <title><%: Page.Title %> - License Manager</title>
 
     <asp:PlaceHolder runat="server">
         <%: Scripts.Render("~/bundles/modernizr") %>
@@ -48,13 +48,17 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand" runat="server" href="~/">Anwendungsname</a>
+                    <a class="navbar-brand" runat="server" href="~/">LicenseManager</a>
                 </div>
                 <div class="navbar-collapse collapse">
                     <ul class="nav navbar-nav">
-                        <li><a runat="server" href="~/">Startseite</a></li>
-                        <li><a runat="server" href="~/About">Informationen</a></li>
-                        <li><a runat="server" href="~/Contact">Kontakt</a></li>
+                        <li id="liHome" runat="server"><a runat="server" href="~/">Startseite</a></li>
+                        <li id="liSoftwares" runat="server"><a runat="server" href="~/Pages/Softwares">Softwares</a></li>
+                        <li id="liContact" runat="server"><a runat="server" href="~/Contact">Kontakt</a></li>
+                    </ul>
+                    <ul class="nav navbar-nav navbar-right">
+                        <%--<li><a id="hlLogin" visible="false" runat="server" href="~/Pages/Account/Login">Login</a></li>--%>  
+                        <li id="liLogin" runat="server"><asp:HyperLink ID="hlLogin2" Visible="false" runat="server" NavigateUrl="~/Pages/Account/Login.aspx">Login</asp:HyperLink></li>
                     </ul>
                 </div>
             </div>
@@ -64,7 +68,7 @@
             </asp:ContentPlaceHolder>
             <hr />
             <footer>
-                <p>&copy; <%: DateTime.Now.Year %> - Meine ASP.NET-Anwendung</p>
+                <p>&copy; <%: DateTime.Now.Year %> - License Manager</p>
             </footer>
         </div>
 

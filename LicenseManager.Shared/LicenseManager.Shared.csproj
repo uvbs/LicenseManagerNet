@@ -78,6 +78,10 @@
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data.Entity" />
+    <Reference Include="System.Net.Http.Formatting, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Client.5.2.3\lib\net45\System.Net.Http.Formatting.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Security" />
     <Reference Include="System.Xml.Linq" />
@@ -91,8 +95,15 @@
     <Compile Include="Computer.cs">
       <DependentUpon>LmEntityModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Dtos\LicenseDetailDto.cs" />
+    <Compile Include="Dtos\LicenseDto.cs" />
+    <Compile Include="Dtos\ManufacturerDetailDto.cs" />
+    <Compile Include="Dtos\ManufacturerDto.cs" />
+    <Compile Include="Dtos\SoftwareDetailDto.cs" />
+    <Compile Include="Dtos\SoftwareDto.cs" />
     <Compile Include="Enums\Language.cs" />
     <Compile Include="Enums\LicenseType.cs" />
+    <Compile Include="Exceptions\NotLoggedInException.cs" />
     <Compile Include="Genre.cs">
       <DependentUpon>LmEntityModel.tt</DependentUpon>
     </Compile>
@@ -122,6 +133,7 @@
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ILicenseManagerContext.cs" />
     <Compile Include="Models\LicenseManagerContext.cs" />
+    <Compile Include="Models\TokenModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Software.cs">
       <DependentUpon>LmEntityModel.tt</DependentUpon>
@@ -129,6 +141,11 @@
     <Compile Include="UsedOn.cs">
       <DependentUpon>LmEntityModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="WebApiClient\AbstractWebApiClient.cs" />
+    <Compile Include="WebApiClient\AccountClient.cs" />
+    <Compile Include="WebApiClient\LicensesClient.cs" />
+    <Compile Include="WebApiClient\ManufacturersClient.cs" />
+    <Compile Include="WebApiClient\SoftwaresClient.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config">
@@ -156,6 +173,7 @@
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
