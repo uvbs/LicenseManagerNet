@@ -8,6 +8,7 @@
                 <asp:TableHeaderCell ID="thcId" runat="server"></asp:TableHeaderCell>
                 <asp:TableHeaderCell ID="thcManufacturer" runat="server"></asp:TableHeaderCell>
                 <asp:TableHeaderCell ID="thcName" runat="server"></asp:TableHeaderCell>
+                <asp:TableHeaderCell ID="thcGenre" runat="server"></asp:TableHeaderCell>
                 <asp:TableHeaderCell ID="thcButtons" runat="server"></asp:TableHeaderCell>
             </asp:TableRow>
     </asp:Table>

@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Login.aspx.cs" Inherits="LicenseManager.Web.Pages.Account.Login" Async="true" %>
+﻿<%@ Page Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Register.aspx.cs" Inherits="LicenseManager.Web.Pages.Account.Register" Async="true" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
     <h1 id="pageHeader" runat="server"></h1>
 
@@ -10,12 +10,9 @@
         <asp:Label ID="lblPassword" AssociatedControlID="tbPassword" runat="server"></asp:Label>
         <asp:TextBox ID="tbPassword" TextMode="Password" runat="server" CssClass="form-control"></asp:TextBox>
     </div>
-    <asp:Button ID="btnDoLogin" runat="server" CssClass="btn btn-default" OnClick="btnDoLogin_Click" />
-    
-    <%-- DEV --%>
-    <br />
-    <br />
-    <asp:Button ID="btnAdminLogin" runat="server" CssClass="btn btn-danger" OnClick="btnAdminLogin_Click" />
-    <asp:Button ID="btnTwLogin" runat="server" CssClass="btn btn-warning" OnClick="btnTwLogin_Click" />
-    <%-- END DEV --%>
+    <div class="form-group">
+        <asp:Label ID="lblConfirmPassword" AssociatedControlID="tbPassword" runat="server"></asp:Label>
+        <asp:TextBox ID="tbConfirmPassword" TextMode="Password" runat="server" CssClass="form-control"></asp:TextBox>
+    </div>
+    <asp:Button ID="btnRegister" runat="server" CssClass="btn btn-default" OnClick="btnRegister_Click" />
 </asp:Content>

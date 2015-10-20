@@ -58,7 +58,10 @@
                     </ul>
                     <ul class="nav navbar-nav navbar-right">
                         <%--<li><a id="hlLogin" visible="false" runat="server" href="~/Pages/Account/Login">Login</a></li>--%>  
-                        <li id="liLogin" runat="server"><asp:HyperLink ID="hlLogin2" Visible="false" runat="server" NavigateUrl="~/Pages/Account/Login.aspx">Login</asp:HyperLink></li>
+                        <li id="liLogin" runat="server"><asp:LinkButton ID="lbtLogin" Visible="false" runat="server" OnClick="lbtLogin_Click">Login</asp:LinkButton></li>
+                        <li id="liRegister" runat="server"><asp:LinkButton ID="lbtRegister" Visible="false" runat="server" OnClick="lbtRegister_Click">Register</asp:LinkButton></li>
+                        <li id="liLblUser" runat="server"><asp:LinkButton ID="lbtUser" Visible="false" runat="server"></asp:LinkButton></li>
+                        <li id="liLogout" runat="server"><asp:LinkButton ID="lbtLogout" Visible="false" runat="server" OnClick="lbtLogout_Click">Logout</asp:LinkButton></li>
                     </ul>
                 </div>
             </div>

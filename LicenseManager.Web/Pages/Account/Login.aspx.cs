@@ -12,7 +12,7 @@ namespace LicenseManager.Web.Pages.Account
 {
     public partial class Login : System.Web.UI.Page
     {
-        protected void Page_Init(object sener, EventArgs e)
+        protected void Page_Init(object sender, EventArgs e)
         {
             
         }
@@ -20,34 +20,39 @@ namespace LicenseManager.Web.Pages.Account
         {
             if ((bool)Session["IsLoggedIn"] == true)
             {
-                Response.Redirect("Default.aspx");
+                Response.Redirect("~/Default.aspx");
             }
-            WritePageText();
-            var item = (HtmlGenericControl)Master.FindControl("liLogin");
-            item.Attributes["class"] = "active";
+            if (!IsPostBack)
+            {
+                WritePageText();
+            }
         }
 
         private void WritePageText()
         {
+            //var item = (HtmlGenericControl)Master.FindControl("liLogin");
+            //item.Attributes["class"] = "active";
+
+            var master = Master as SiteMaster;
+            if (master != null)
+            {
+                master.SetActiveMenuItem("Login");
+            }
+
             this.Title = "Login";
             pageHeader.InnerText = "Login";
             lblEmail.Text = "E-Mail";
             lblPassword.Text = "Password";
             btnDoLogin.Text = "Login";
+            btnAdminLogin.Text = "Admin Login";
+            btnTwLogin.Text = "tw@to-wer.de";
         }
 
         protected void btnDoLogin_Click(object sender, EventArgs e)
         {
-            try
-            {
                 var email = tbEmail.Text;
                 var password = tbPassword.Text;
                 DoLogin(email, password);
-            }
-            catch (Exception ex)
-            {
-
-            }
         }
 
         private async void DoLogin(string email, string password)
@@ -62,9 +67,18 @@ namespace LicenseManager.Web.Pages.Account
                 return;
             }
             Session["IsLoggedIn"] = true;
-            Session["Username"] = email;
             Session.Add("Token", token);
             Response.Redirect("~/Default.aspx");
+        }
+
+        protected void btnAdminLogin_Click(object sender, EventArgs e)
+        {
+            DoLogin("admin@to-wer.de", "Admin123;");
+        }
+
+        protected void btnTwLogin_Click(object sender, EventArgs e)
+        {
+            DoLogin("tw@to-wer.de", "Test123;");
         }
     }
 }

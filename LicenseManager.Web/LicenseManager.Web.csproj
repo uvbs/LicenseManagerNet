@@ -123,8 +123,10 @@
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
     <None Include="Properties\PublishProfiles\lokal.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
+    <Content Include="Pages\Account\Register.aspx" />
     <Content Include="Pages\Account\Login.aspx" />
     <Content Include="Pages\SoftwareDetails.aspx" />
+    <Content Include="Pages\SoftwareEdit.aspx" />
     <Content Include="Pages\Softwares.aspx" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
@@ -201,6 +203,13 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="GlobalProperties.cs" />
+    <Compile Include="Pages\Account\Register.aspx.cs">
+      <DependentUpon>Register.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\Account\Register.aspx.designer.cs">
+      <DependentUpon>Register.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Pages\Account\Login.aspx.cs">
       <DependentUpon>Login.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -214,6 +223,13 @@
     </Compile>
     <Compile Include="Pages\SoftwareDetails.aspx.designer.cs">
       <DependentUpon>SoftwareDetails.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\SoftwareEdit.aspx.cs">
+      <DependentUpon>SoftwareEdit.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\SoftwareEdit.aspx.designer.cs">
+      <DependentUpon>SoftwareEdit.aspx</DependentUpon>
     </Compile>
     <Compile Include="Pages\Softwares.aspx.cs">
       <DependentUpon>Softwares.aspx</DependentUpon>

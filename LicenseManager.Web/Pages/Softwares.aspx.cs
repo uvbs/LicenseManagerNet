@@ -21,19 +21,26 @@ namespace LicenseManager.Web.Pages
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            var item = (HtmlGenericControl)Master.FindControl("liSoftwares");
-            if (item != null) { item.Attributes["class"] = "active"; }
-            GetSoftwares();
-            WritePageText();
+            if (!IsPostBack)
+            {
+                WritePageText();
+                GetSoftwares();
+            }
         }
 
         #region page methods
 
         private void WritePageText()
         {
+            var master = Master as SiteMaster;
+            if (master != null)
+            {
+                master.SetActiveMenuItem("Softwares");
+            }
             this.Title = "Softwares";
             thcId.Text = "#";
             thcManufacturer.Text = "Manufacturer";
+            thcGenre.Text = "Genre";
             thcName.Text = "Name";
             thcButtons.Text = "&nbsp;";
         }
@@ -60,6 +67,7 @@ namespace LicenseManager.Web.Pages
                     {
                         Text = item.Name
                     });
+                    tr.Cells.Add(new TableCell() { Text = item.GenreName });
                     tr.Cells.Add(CreateLinks(item));
                     tblSoftwares.Rows.Add(tr);
                 }
@@ -74,10 +82,16 @@ namespace LicenseManager.Web.Pages
                 Text = "Details",
                 CssClass = "btn btn-info",
                 ID = "btnDetail_" + software.Id,
-                PostBackUrl = "SoftwareDetails.aspx?id=" + software.Id + "&pageAction=Detail"
+                PostBackUrl = "SoftwareDetails.aspx?id=" + software.Id
             };
 
-            var btnEdit = new Button { ID = "btnEdit_" + software.Id, Text = "Edit", CssClass = "btn btn-warning" };
+            var btnEdit = new Button
+            {
+                ID = "btnEdit_" + software.Id,
+                Text = "Edit",
+                CssClass = "btn btn-warning",
+                PostBackUrl = "SoftwareEdit.aspx?id=" + software.Id
+            };
             var btnDelete = new Button { Text = "Delete", CssClass="btn btn-danger" };
             
             tc.Controls.Add(btnDetail);

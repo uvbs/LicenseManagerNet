@@ -13,9 +13,18 @@ namespace LicenseManager.Web
     {
         void Application_Start(object sender, EventArgs e)
         {
-            // Code, der beim Anwendungsstart ausgeführt wird
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
+        }
+
+        void Session_Start(object sender, EventArgs e)
+        {
+            Session.Add("IsLoggedIn", false);
+            //Session.Add("Token", null);
+        }
+
+        void Session_End(object sender, EventArgs e)
+        {
         }
     }
 }

@@ -10,69 +10,78 @@
 namespace LicenseManager.Web.Pages {
     
     
-    public partial class Softwares {
+    public partial class SoftwareEdit {
         
         /// <summary>
-        /// tblSoftwares-Steuerelement
+        /// lblManufacturer-Steuerelement
         /// </summary>
         /// <remarks>
         /// Automatisch generiertes Feld
         /// Zum Ändern Felddeklaration aus der Designerdatei in eine Code-Behind-Datei verschieben.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Table tblSoftwares;
+        protected global::System.Web.UI.WebControls.Label lblManufacturer;
         
         /// <summary>
-        /// thrSoftwares-Steuerelement
+        /// ddlManufacturer-Steuerelement
         /// </summary>
         /// <remarks>
         /// Automatisch generiertes Feld
         /// Zum Ändern Felddeklaration aus der Designerdatei in eine Code-Behind-Datei verschieben.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TableRow thrSoftwares;
+        protected global::System.Web.UI.WebControls.DropDownList ddlManufacturer;
         
         /// <summary>
-        /// thcId-Steuerelement
+        /// lblName-Steuerelement
         /// </summary>
         /// <remarks>
         /// Automatisch generiertes Feld
         /// Zum Ändern Felddeklaration aus der Designerdatei in eine Code-Behind-Datei verschieben.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TableHeaderCell thcId;
+        protected global::System.Web.UI.WebControls.Label lblName;
         
         /// <summary>
-        /// thcManufacturer-Steuerelement
+        /// tbName-Steuerelement
         /// </summary>
         /// <remarks>
         /// Automatisch generiertes Feld
         /// Zum Ändern Felddeklaration aus der Designerdatei in eine Code-Behind-Datei verschieben.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TableHeaderCell thcManufacturer;
+        protected global::System.Web.UI.WebControls.TextBox tbName;
         
         /// <summary>
-        /// thcName-Steuerelement
+        /// lblGenre-Steuerelement
         /// </summary>
         /// <remarks>
         /// Automatisch generiertes Feld
         /// Zum Ändern Felddeklaration aus der Designerdatei in eine Code-Behind-Datei verschieben.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TableHeaderCell thcName;
+        protected global::System.Web.UI.WebControls.Label lblGenre;
         
         /// <summary>
-        /// thcGenre-Steuerelement
+        /// ddlGenre-Steuerelement
         /// </summary>
         /// <remarks>
         /// Automatisch generiertes Feld
         /// Zum Ändern Felddeklaration aus der Designerdatei in eine Code-Behind-Datei verschieben.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TableHeaderCell thcGenre;
+        protected global::System.Web.UI.WebControls.DropDownList ddlGenre;
         
         /// <summary>
-        /// thcButtons-Steuerelement
+        /// lblDescription-Steuerelement
         /// </summary>
         /// <remarks>
         /// Automatisch generiertes Feld
         /// Zum Ändern Felddeklaration aus der Designerdatei in eine Code-Behind-Datei verschieben.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TableHeaderCell thcButtons;
+        protected global::System.Web.UI.WebControls.Label lblDescription;
+        
+        /// <summary>
+        /// tbDescription-Steuerelement
+        /// </summary>
+        /// <remarks>
+        /// Automatisch generiertes Feld
+        /// Zum Ändern Felddeklaration aus der Designerdatei in eine Code-Behind-Datei verschieben.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox tbDescription;
     }
 }
