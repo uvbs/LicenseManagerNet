@@ -123,6 +123,7 @@ namespace LicenseManager.Api.Controllers
 
             // TODO implement check if license already exists (Key and SoftwareId)
             license.CreationDate = DateTime.Now;
+            //license.UserId  = currentUser.Id
             _db.Licenses.Add(license);
             _db.SaveChanges();
 

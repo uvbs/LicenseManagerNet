@@ -15,10 +15,21 @@ namespace LicenseManager.Shared.WebApiClient
         {
         }
 
-        //public async Task Register(string email, string password, string confirmPassword)
-        //{
-        //    HttpResponseMessage response = await _client.PostAsJsonAsync("api/Account/Register", 
-        //}
+        public async Task<bool> Register(string email, string password, string confirmPassword)
+        {
+            var registerModel = new RegisterBindingModel()
+            {
+                Email = email,
+                Password = password,
+                ConfirmPassword = confirmPassword
+            };
+            var response = await _client.PostAsJsonAsync("api/Account/Register", registerModel);
+            if (!response.IsSuccessStatusCode)
+            {
+                return false;
+            }
+            return true;
+        }
 
         public async Task<TokenModel> Login(string username, string password)
         {
